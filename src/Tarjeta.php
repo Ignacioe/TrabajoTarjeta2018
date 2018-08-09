@@ -39,4 +39,8 @@ class Tarjeta implements TarjetaInterface {
       return $this->saldo;
     }
 
+    public function restarSaldo() {
+      $this->saldo -= 14.80;
+    }
+
 }
