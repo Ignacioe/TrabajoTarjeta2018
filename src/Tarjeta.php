@@ -15,18 +15,20 @@ class Tarjeta implements TarjetaInterface {
         
         if($monto==10 || $monto==20 || $monto==30 || $monto==50 || $monto==100){
           $this->saldo += $monto;
+          return TRUE;
         }
         if($monto==510.15){
           $this->saldo += $monto;
           $this->saldo += 81.93;
+          return TRUE;
         }
         if($monto==962.59){
           $this->saldo += $monto;
           $this->saldo += 221.58;
+          return TRUE;
         }
 
-      //Esta parte no va, porque esta funcion es solo de recarga. Si quisieramos retornar el saldo, habria que hacer otra funcion.
-      //return $monto % 2 == 0;
+        return FALSE;
     }
 
     /**
