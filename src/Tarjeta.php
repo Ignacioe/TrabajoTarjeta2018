@@ -16,7 +16,7 @@ class Tarjeta implements TarjetaInterface {
     }
 
     public function recargar($monto) {
-        if($monto==10 || $monto==20 || $monto==30 || $monto==50 || $monto==100 && ($monto-$viajesPlus1-$viajesPlus2>0)){
+        if($monto==10 || $monto==20 || $monto==30 || $monto==50 || $monto==100 && ($monto-$this->viajesPlus1-$this->viajesPlus2>0)){
           $this->saldo += $monto-$this->viajesPlus1-$this->viajesPlus2;
           $this->viajesPlus1 = 0;
           $this->viajesPlus2 = 0;
