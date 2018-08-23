@@ -53,11 +53,19 @@ class Colectivo implements ColectivoInterface {
      *  suficiente en la tarjeta.
      */
     public function pagarCon(TarjetaInterface $tarjeta){
-    	if( $tarjeta->obtenerSaldo() < 14.80 ){
+    	if( $tarjeta->obtenerSaldo() < 14.80  && $tarjeta->viajesPlus2!=0){
     		echo "El saldo es insuficiente";
     		return FALSE;
     	}else{
-    		$tarjeta->restarSaldo();
+            if($tarjeta->obtenerSaldo()< 14.80 && $tarjeta->viajesPlus1==0){
+                $tarjeta->viajesPlus1 = 14.80;
+            }else
+            if($tarjeta->obtenerSaldo()< 14.80 && $tarjeta->viajesPlus1!=0){
+                $tarjeta->viajesPlus2 = 14.80;
+            }else
+            if($tarjeta->obtenerSaldo()> 14.80){
+            $tarjeta->restarSaldo();
+            }
     		$boleto= new Boleto(14.80,$this,$tarjeta);
     		return $boleto;
     	}
