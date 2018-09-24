@@ -18,5 +18,22 @@ class ColectivoTest extends TestCase {
 
     	$tarjetaJose->recargar(50);
     	$this->assertEquals( ( ($colectivo->pagarCon($tarjetaJose) )->obtenerColectivo() )->linea() , $colectivo->linea() );
+
+    }
+
+    public function TestViajePlus() {
+        $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
+        $tarjetaJose = new Tarjeta();
+
+        $tarjetaJose->recargar(10);
+        $this->assertEquals( ( ($colectivo->pagarCon($tarjetaJose) )->obtenerColectivo() )->linea() , $colectivo->linea() );
+        $this->assertEquals( ( ($colectivo->pagarCon($tarjetaJose) )->obtenerColectivo() )->linea() , $colectivo->linea() );
+        $this->assertFalse(($colectivo->pagarCon($tarjetaJose));
+
+
+
+
+
+
     }
 }
