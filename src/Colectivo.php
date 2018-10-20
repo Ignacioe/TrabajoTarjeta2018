@@ -53,7 +53,7 @@ class Colectivo implements ColectivoInterface {
      *  suficiente en la tarjeta.
      */
     public function pagarCon(TarjetaInterface $tarjeta){
-    	if($tarjeta->obtenerPlus2() == FALSE && $tarjeta->obtenerSaldo() >= ($tarjeta->obtenerMonto*3)){
+    	if($tarjeta->obtenerPlus2() == FALSE && $tarjeta->obtenerSaldo() >= ($tarjeta->obtenerMonto()*3)){
             $tarjeta->restarSaldo();
             $boleto= new Boleto(0,NULL,NULL);
             return $boleto;
@@ -61,7 +61,7 @@ class Colectivo implements ColectivoInterface {
         else{
             return FALSE;
         }
-        if($tarjeta->obtenerPlus1() == FALSE && $tarjeta->obtenerSaldo() >= ($tarjeta->obtenerMonto*2)){
+        if($tarjeta->obtenerPlus1() == FALSE && $tarjeta->obtenerSaldo() >= ($tarjeta->obtenerMonto()o*2)){
             $tarjeta->restarSaldo();
             $boleto= new Boleto(0,NULL,NULL);
             return $boleto;
@@ -72,7 +72,7 @@ class Colectivo implements ColectivoInterface {
             return $boleto;
         }
 
-        if($tarjeta->obtenerSaldo() >= $tarjeta->obtenerMonto){
+        if($tarjeta->obtenerSaldo() >= $tarjeta->obtenerMonto()){
             $tarjeta->restarSaldo();
             $boleto= new Boleto(0,NULL,NULL);
             return $boleto;
