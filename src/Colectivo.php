@@ -55,7 +55,7 @@ class Colectivo implements ColectivoInterface {
     public function pagarCon(TarjetaInterface $tarjeta){
     	if($tarjeta->obtenerPlus2() == FALSE && $tarjeta->obtenerSaldo() >= ($tarjeta->obtenerMonto()*3)){
             $tarjeta->restarSaldo();
-            $boleto= new Boleto(0,NULL,NULL);
+            $boleto= new Boleto($tarjeta->obtenerMonto(),$this,$tarjeta);
             return $boleto;
         }
         else{
@@ -63,23 +63,23 @@ class Colectivo implements ColectivoInterface {
         }
         if($tarjeta->obtenerPlus1() == FALSE && $tarjeta->obtenerSaldo() >= ($tarjeta->obtenerMonto()*2)){
             $tarjeta->restarSaldo();
-            $boleto= new Boleto(0,NULL,NULL);
+            $boleto= new Boleto($tarjeta->obtenerMonto(),$this,$tarjeta);
             return $boleto;
         }
         else{
             $tarjeta->CambiarPlus(2);               //Si no tengo credito y ya use el plus1, puedo usar el plus2
-            $boleto= new Boleto(0,NULL,NULL);
+            $boleto= new Boleto($tarjeta->obtenerMonto(),$this,$tarjeta);
             return $boleto;
         }
 
         if($tarjeta->obtenerSaldo() >= $tarjeta->obtenerMonto()){
             $tarjeta->restarSaldo();
-            $boleto= new Boleto(0,NULL,NULL);
+            $boleto= new Boleto($tarjeta->obtenerMonto(),$this,$tarjeta);
             return $boleto;
         }
         else{
             $tarjeta->CambiarPlus(1);
-            $boleto= new Boleto(0,NULL,NULL);
+            $boleto= new Boleto($tarjeta->obtenerMonto(),$this,$tarjeta);
             return $boleto;  
         }
     }

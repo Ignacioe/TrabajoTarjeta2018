@@ -62,7 +62,7 @@ class TarjetaTest extends TestCase {
         
         $colectivo->pagarCon($tarjetaMedia);
 
-        $this->assertEquals($tarjeta->obtenerSaldo(), 2.60);
+        $this->assertEquals($tarjetaMedia->obtenerSaldo(), 2.60);
     }
 }
 
