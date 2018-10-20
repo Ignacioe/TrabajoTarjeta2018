@@ -53,35 +53,35 @@ class Colectivo implements ColectivoInterface {
      *  suficiente en la tarjeta.
      */
     public function pagarCon(TarjetaInterface $tarjeta){
-    	
-        if($tarjeta->obtenerSaldo() < 14.80 && ( $viajesPlus1 == TRUE || $viajesPlus2 == TRUE ) ){
-            if($tarjeta->viajesPlus1 == TRUE){
-                $tarjeta->CambiarPlus(1);
-                $boleto= new Boleto(0,NULL,NULL);
-                return $boleto;
-
-            }
-            else{
-                if($tarjeta->viajesPlus2 == TRUE){
-                    $tarjeta->CambiarPlus(2);
-                    $boleto = new Boleto (0,NULL, NULL);
-                    return $boleto;
-                }
-                else{
-                    return FALSE;
-                }
-            }
-
+    	if($tarjeta->obtenerPlus2() == FALSE && $tarjeta->obtenerSaldo() >= ($tarjeta->obtenerMonto*3)){
+            $tarjeta->restarSaldo();
+            $boleto= new Boleto(0,NULL,NULL);
+            return $boleto;
+        }
+        else{
+            return FALSE;
+        }
+        if($tarjeta->obtenerPlus1() == FALSE && $tarjeta->obtenerSaldo() >= ($tarjeta->obtenerMonto*2)){
+            $tarjeta->restarSaldo();
+            $boleto= new Boleto(0,NULL,NULL);
+            return $boleto;
+        }
+        else{
+            $tarjeta->CambiarPlus(2);               //Si no tengo credito y ya use el plus1, puedo usar el plus2
+            $boleto= new Boleto(0,NULL,NULL);
+            return $boleto;
         }
 
-        else{
-            
+        if($tarjeta->obtenerSaldo() >= $tarjeta->obtenerMonto){
             $tarjeta->restarSaldo();
-            $boleto= new Boleto(14.80,$this,$tarjeta);
+            $boleto= new Boleto(0,NULL,NULL);
             return $boleto;
-            }
-    		
-    	}
-
+        }
+        else{
+            $tarjeta->CambiarPlus(1);
+            $boleto= new Boleto(0,NULL,NULL);
+            return $boleto;  
+        }
+    }
 }
 ?>

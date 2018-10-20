@@ -40,5 +40,29 @@ class TarjetaTest extends TestCase {
 
       $this->assertFalse($tarjeta->recargar(15));
       $this->assertEquals($tarjeta->obtenerSaldo(), 0);
-  }
+    }
+
+
+    public function testFranquicia(){
+        $tarjetaGratis = new Franquicia();
+        $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
+
+        for($i=0; $i < 4; $i++){
+            $colectivo->pagarCon($tarjetaGratis);
+        }
+
+
+    }
+
+    public function testFranquiciaMedia() {
+        $tarjetaMedia = new FranquiciaMedia();
+        $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
+        
+        $tarjetaMedia->recargar(10);
+        
+        $colectivo->pagarCon($tarjetaMedia);
+
+        $this->assertEquals($tarjeta->obtenerSaldo(), 2.60);
+    }
 }
+

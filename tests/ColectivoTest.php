@@ -29,5 +29,14 @@ class ColectivoTest extends TestCase {
         $this->assertEquals( ( ($colectivo->pagarCon($tarjetaJose) )->obtenerColectivo() )->linea() , $colectivo->linea() );
         $this->assertEquals( ( ($colectivo->pagarCon($tarjetaJose) )->obtenerColectivo() )->linea() , $colectivo->linea() );
         $this->assertFalse(($colectivo->pagarCon($tarjetaJose));
+        
+        $tarjetaJose2 = new Tarjeta();
+        $tarjetaJose2->recargar(10);
+        $colectivo->pagarCon($tarjetaJose2);
+
+        $tarjetaJose2->recargar(20);
+        $colectivo->pagarCon($tarjetaJose2);
+        $this->assertEquals($tarjetaJose2->obtenerSaldo, 0.4);
     }
+
 }
