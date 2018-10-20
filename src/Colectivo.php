@@ -66,6 +66,9 @@ class Colectivo implements ColectivoInterface {
                     return $boleto;
                 }
                 else{
+                    if($tarjeta->obtenerPlus2() == FALSE){
+                        return FALSE;
+                    }
                     $tarjeta->CambiarPlus(2);               //Si no tengo credito y ya use el plus1, puedo usar el plus2
                     $boleto= new Boleto($tarjeta->obtenerMonto(),$this,$tarjeta);
                     return $boleto;
@@ -83,7 +86,6 @@ class Colectivo implements ColectivoInterface {
                     return $boleto;  
                 }
             }
-            return FALSE;
         }
     }
 }
