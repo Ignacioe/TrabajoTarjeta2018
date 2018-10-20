@@ -77,16 +77,18 @@ class Tarjeta implements TarjetaInterface {
  				return;
  		}
  		else{
- 				if($this->viajesPlus1 == FALSE ){	//Si solo tengo que pagar 1 plus
+			 
+			if($this->viajesPlus1 == FALSE ){	//Si solo tengo que pagar 1 plus
  				$this->viajesPlus1 = TRUE;
  				$this->saldo -= ($this->obtenerMonto*2);			//Resto el plus y 1 boleto
  				return;
- 				}
+ 			}
  				else{
 					$this->saldo -= $this->obtenerMonto;	
  					return;
 				}
- 			}
+ 		}
 	}
+}
 
 
