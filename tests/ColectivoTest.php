@@ -14,7 +14,9 @@ class ColectivoTest extends TestCase {
     public function testPagarCon() {
     	$colectivo = new Colectivo("142 Rojo", "Semtur", 10);
     	$tarjetaJose = new Tarjeta();
-    	$this->assertFalse($colectivo->pagarCon($tarjetaJose));
+        $this->assertNotEquals( $colectivo->pagarCon($tarjetaJose), FALSE);
+        $this->assertNotEquals( $colectivo->pagarCon($tarjetaJose), FALSE);
+        $this->assertFalse($colectivo->pagarCon($tarjetaJose));
 
         $tarjetaJose->recargar(50);
     	$this->assertNotEquals( $colectivo->pagarCon($tarjetaJose), FALSE);

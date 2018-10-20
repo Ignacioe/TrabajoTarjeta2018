@@ -7,14 +7,13 @@ class Tarjeta implements TarjetaInterface {
     protected $ID;
     protected $viajesPlus1;
 	protected $viajesPlus2;
-	protected $monto;
+	protected $monto = 14.80;
 
     public function __construct(){
       $this->saldo=0.0;
       $this->ID=rand();
       $this->viajesPlus1=TRUE;
 	  $this->viajesPlus2=TRUE;
-	  $this->monto = 14.80;
     }
 
     public function recargar($monto) {
