@@ -31,14 +31,14 @@ class Colectivo implements ColectivoInterface {
     public function pagarCon(TarjetaInterface $tarjeta){
     	if($tarjeta->obtenerPlus2() == FALSE && $tarjeta->obtenerSaldo() >= ($tarjeta->obtenerMonto()*3)){
             $tarjeta->restarSaldo();
-            $boleto= new Boleto($tarjeta->obtenerMonto(),$this,$tarjeta,$tarjeta->obtenerMonto()*3,"Normal");
+            $boleto= new Boleto($tarjeta->obtenerMonto(),$this,$tarjeta,$tarjeta->obtenerMonto()*3,"Normal","Abona 2 viajes plus");
             return $boleto;
         }
         else{
             if($tarjeta->obtenerPlus1() == FALSE ){
                 if ($tarjeta->obtenerSaldo() >= ($tarjeta->obtenerMonto()*2)){
                     $tarjeta->restarSaldo();
-                    $boleto= new Boleto($tarjeta->obtenerMonto(),$this,$tarjeta,$tarjeta->obtenerMonto()*2,"Normal");
+                    $boleto= new Boleto($tarjeta->obtenerMonto(),$this,$tarjeta,$tarjeta->obtenerMonto()*2,"Normal","Abona 1 viaje plus");
                     return $boleto;
                 }
                 else{
@@ -46,19 +46,19 @@ class Colectivo implements ColectivoInterface {
                         return FALSE;
                     }
                     $tarjeta->CambiarPlus(2);               //Si no tengo credito y ya use el plus1, puedo usar el plus2
-                    $boleto= new Boleto($tarjeta->obtenerMonto(),$this,$tarjeta,0.0,"Viaje Plus");
+                    $boleto= new Boleto($tarjeta->obtenerMonto(),$this,$tarjeta,0.0,"Viaje Plus","");
                     return $boleto;
                 }
             }
             else{
                 if($tarjeta->obtenerSaldo() >= $tarjeta->obtenerMonto()){
                     $tarjeta->restarSaldo();
-                    $boleto= new Boleto($tarjeta->obtenerMonto(),$this,$tarjeta,$tarjeta->obtenerMonto(),"Normal");
+                    $boleto= new Boleto($tarjeta->obtenerMonto(),$this,$tarjeta,$tarjeta->obtenerMonto(),"Normal","");
                     return $boleto;
                 }
                 else{
                     $tarjeta->CambiarPlus(1);
-                    $boleto= new Boleto($tarjeta->obtenerMonto(),$this,$tarjeta,0.0,"Viaje Plus");
+                    $boleto= new Boleto($tarjeta->obtenerMonto(),$this,$tarjeta,0.0,"Viaje Plus","");
                     return $boleto;  
                 }
             }

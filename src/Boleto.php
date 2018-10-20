@@ -13,9 +13,9 @@ class Boleto implements BoletoInterface {
     protected $IDtarjeta;
     protected $lineaDeColectivo;
     protected $tipoBoleto;
+    protected $descripcion;
 
-
-    public function __construct($valor, $colectivo, $tarjeta, $totalAbonado, $tipoBoleto) {
+    public function __construct($valor, $colectivo, $tarjeta, $totalAbonado, $tipoBoleto,$descripcion) {
         $this->valor = $valor;
         $this->lineaDeColectivo = $colectivo->linea();
         $this->tipoTarjeta = get_class($tarjeta);
@@ -23,7 +23,7 @@ class Boleto implements BoletoInterface {
         $this->totalAbonado = $totalAbonado;
         $this->IDtarjeta= $tarjeta->obtenerID();
         $this->tipoBoleto = $tipoBoleto;
-
+        $this->descripcion = $descripcion;
     }
 
     public function obtenerValor() {
@@ -34,4 +34,7 @@ class Boleto implements BoletoInterface {
         return $this->colectivo;
     }
 
+    public function obtenerTipoBoleto(){
+        return $this->tipoBoleto;
+    }
 }
