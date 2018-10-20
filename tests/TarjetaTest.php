@@ -6,9 +6,6 @@ use PHPUnit\Framework\TestCase;
 
 class TarjetaTest extends TestCase {
 
-    /**
-     * Comprueba que la tarjeta aumenta su saldo cuando se carga saldo válido.
-     */
     public function testCargaSaldo() {
         $tarjeta = new Tarjeta();
 
@@ -32,9 +29,6 @@ class TarjetaTest extends TestCase {
 
     }
 
-    /**
-     * Comprueba que la tarjeta no puede cargar saldos invalidos.
-     */
     public function testCargaSaldoInvalido() {
       $tarjeta = new Tarjeta();
 

@@ -38,23 +38,24 @@ class Tarjeta implements TarjetaInterface {
 		 return FALSE;
     }
 
-    /**
-     * Devuelve el saldo que le queda a la tarjeta.
-     *
-     * @return float
-     */
-    
+
     public function obtenerSaldo() {
       return $this->saldo;
-    }
+	}
+	
+	public function obtenerID(){
+		return $this->ID;
+	}
 
 	public function obtenerPlus1 (){
 		return $this->viajesPlus1;
 	}
+	
 	public function obtenerPlus2 (){
 		return $this->viajesPlus2;
 	}
-    public function CambiarPlus($op){
+  
+	public function CambiarPlus($op){
     	if($op==1){
     		$this->viajesPlus1=FALSE;
     	}
