@@ -48,7 +48,7 @@ class TarjetaTest extends TestCase {
         $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
 
         for($i=0; $i < 4; $i++){
-            $colectivo->pagarCon($tarjetaGratis);
+            $this->assertNotEquals($colectivo->pagarCon($tarjetaGratis),FALSE);
         }
 
 
