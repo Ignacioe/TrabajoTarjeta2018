@@ -61,7 +61,7 @@ class Colectivo implements ColectivoInterface {
         else{
             return FALSE;
         }
-        if($tarjeta->obtenerPlus1() == FALSE && $tarjeta->obtenerSaldo() >= ($tarjeta->obtenerMonto()o*2)){
+        if($tarjeta->obtenerPlus1() == FALSE && $tarjeta->obtenerSaldo() >= ($tarjeta->obtenerMonto()*2)){
             $tarjeta->restarSaldo();
             $boleto= new Boleto(0,NULL,NULL);
             return $boleto;
