@@ -32,7 +32,7 @@ class Colectivo implements ColectivoInterface {
         
         $fecha_actual = $tiempo->time();
         $multiplicador = 1;
-        if($tarjeta->obtenerTipo == "Medio"){
+        if($tarjeta->obtenerTipo() == "Medio"){
             if( $tarjeta->ObtenerUltBol()==NULL ){
             
                 $multiplicador = 1;
