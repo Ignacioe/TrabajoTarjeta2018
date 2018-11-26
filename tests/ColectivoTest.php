@@ -41,7 +41,7 @@ class ColectivoTest extends TestCase {
 
         $tarjetaJose2->recargar(20);
         $colectivo->pagarCon($tarjetaJose2, $tiempo);
-        $this->assertEquals($tarjetaJose2->obtenerSaldo, 0.4);
+        $this->assertEquals($tarjetaJose2->obtenerSaldo(), 0.4);
     }
 
     public function testFranquiciaMedia(){
@@ -53,17 +53,17 @@ class ColectivoTest extends TestCase {
 
         $colectivo->pagarCon($tarjetaJose, $tiempo);
 
-        $this->assertEquals($tarjetaJose2->obtenerSaldo, 100-7.4);
+        $this->assertEquals($tarjetaJose2->obtenerSaldo(), 100-7.4);
 
         $colectivo->pagarCon($tarjetaJose, $tiempo);
 
-        $this->assertEquals($tarjetaJose2->obtenerSaldo, 92.6-14.8);
+        $this->assertEquals($tarjetaJose2->obtenerSaldo(), 92.6-14.8);
 
         $time->Avanzar(360);
 
         $colectivo->pagarCon($tarjetaJose, $tiempo);
 
-        $this->assertEquals($tarjetaJose2->obtenerSaldo, 77.8-7.4);                
+        $this->assertEquals($tarjetaJose2->obtenerSaldo(), 77.8-7.4);                
     }
 
 }
