@@ -57,6 +57,8 @@ class ColectivoTest extends TestCase {
 
         $colectivo->pagarCon($tarjetaJose, $tiempo);
 
+        dump($tarjetaJose->ObtenerUltBol());
+
         $this->assertEquals($tarjetaJose->obtenerSaldo(), 92.6-14.8);
 
         $time->Avanzar(360);
