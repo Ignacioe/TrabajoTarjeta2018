@@ -43,7 +43,7 @@ class Colectivo implements ColectivoInterface {
 
                 if($fecha_actual - $ultimo_boleto->obtenerFecha() > 300){
 
-                    $multiplicador = 1;
+                    $multiplicador = 2;
 
                 }
                 else{
