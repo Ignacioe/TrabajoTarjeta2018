@@ -41,13 +41,13 @@ class Colectivo implements ColectivoInterface {
             else{
                 $ultimo_boleto = $tarjeta->ObtenerUltBol();
 
-                if($fecha_actual - $ultimo_boleto->obtenerFecha() > 300){
+                if($fecha_actual - $ultimo_boleto->obtenerFecha() < 300){
 
-                    $multiplicador = 1;
+                    $multiplicador = 2;
 
                 }
                 else{
-                    $multiplicador = 2;
+                    $multiplicador = 1;
                 }
                 
             }
