@@ -48,7 +48,7 @@ class Tarjeta implements TarjetaInterface {
       $this->Ult_boleto=$boleto;
 	}
 
-	public function ObtenerUltBol($boleto) {
+	public function ObtenerUltBol() {
       return $this->Ult_boleto;
 	}
 	
@@ -73,7 +73,7 @@ class Tarjeta implements TarjetaInterface {
     	}
 	}
 	
-	public function obtenerMonto (){
+	public function obtenerMonto(){
 		return $this->monto;
 	}
 
