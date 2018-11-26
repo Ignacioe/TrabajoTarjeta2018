@@ -31,7 +31,7 @@ class Colectivo implements ColectivoInterface {
     public function pagarCon(TarjetaInterface $tarjeta, TiempoInterface $tiempo){
         
         $fecha_actual = $tiempo->time();
-        //$multiplicador = 1;
+        $multiplicador = 1;
         if(get_class($tarjeta) == "TrabajoTarjeta\FranquiciaMedia"){
             if( $tarjeta->ObtenerUltBol()==NULL ){
             
@@ -41,7 +41,7 @@ class Colectivo implements ColectivoInterface {
             else{
                 $ultimo_boleto = $tarjeta->ObtenerUltBol();
 
-                if($fecha_actual - $ultimo_boleto->obtenerFecha() < 300){
+                if($fecha_actual - $ultimo_boleto->obtenerFecha() > 300){
 
                     $multiplicador = 1;
 
