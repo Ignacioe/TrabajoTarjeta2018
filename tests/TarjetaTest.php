@@ -40,9 +40,10 @@ class TarjetaTest extends TestCase {
     public function testFranquicia(){
         $tarjetaGratis = new Franquicia();
         $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
+        $tiempo = new TiempoFalso();
 
         for($i=0; $i < 4; $i++){
-            $this->assertNotEquals($colectivo->pagarCon($tarjetaGratis),FALSE);
+            $this->assertNotEquals($colectivo->pagarCon($tarjetaGratis, $tiempo),FALSE);
         }
 
 
@@ -51,10 +52,11 @@ class TarjetaTest extends TestCase {
     public function testFranquiciaMedia() {
         $tarjetaMedia = new FranquiciaMedia();
         $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
-        
+        $tiempo = new TiempoFalso();
+                
         $tarjetaMedia->recargar(10);
         
-        $colectivo->pagarCon($tarjetaMedia);
+        $colectivo->pagarCon($tarjetaMedia, $tiempo);
 
         $this->assertEquals($tarjetaMedia->obtenerSaldo(), 2.60);
     }
