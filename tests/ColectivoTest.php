@@ -23,7 +23,7 @@ class ColectivoTest extends TestCase {
 
     }
 
-    public function TestViajePlus() {
+    public function testViajePlus() {
         $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
         $tarjetaJose = new Tarjeta();
 
@@ -41,5 +41,26 @@ class ColectivoTest extends TestCase {
         $this->assertEquals($tarjetaJose2->obtenerSaldo, 0.4);
     }
 
+    public function testFranquiciaMedia(){
+        $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
+        $tarjetaJose = new FranquiciaMedia();
+        $tiempo = new TiempoFalso();
+
+        $tarjetaJose->recargar(100);
+
+        $colectivo->pagarCon($tarjetaJose, $tiempo);
+
+        $this->assertEquals($tarjetaJose2->obtenerSaldo, 100-7.4);
+
+        $colectivo->pagarCon($tarjetaJose, $tiempo);
+
+        $this->assertEquals($tarjetaJose2->obtenerSaldo, 92.6-14.8);
+
+        $time->Avanzar(360);
+
+        $colectivo->pagarCon($tarjetaJose, $tiempo);
+
+        $this->assertEquals($tarjetaJose2->obtenerSaldo, 77.8-7.4);                
+    }
 
 }

@@ -8,6 +8,7 @@ class Tarjeta implements TarjetaInterface {
     protected $viajesPlus1;
 	protected $viajesPlus2;
 	protected $monto = 14.80;
+	protected $Ult_boleto = NULL;
 
     public function __construct(){
       $this->saldo=0.0;
@@ -41,6 +42,14 @@ class Tarjeta implements TarjetaInterface {
 
     public function obtenerSaldo() {
       return $this->saldo;
+	}
+
+	public function CambiarUltBol($boleto) {
+      $this->Ult_boleto=$boleto;
+	}
+
+	public function ObtenerUltBol($boleto) {
+      return $this->Ult_boleto;
 	}
 	
 	public function obtenerID(){

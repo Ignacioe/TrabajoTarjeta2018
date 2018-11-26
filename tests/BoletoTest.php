@@ -11,14 +11,14 @@ class BoletoTest extends TestCase {
         $tarjetaGratis = new Franquicia();
         $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
 
-        $boleto = new Boleto($valor,$colectivo, $tarjetaGratis,NULL,NULL,NULL);
+        $boleto = new Boleto($valor,$colectivo, $tarjetaGratis,NULL,NULL,NULL,0);
 
         $this->assertEquals($boleto->obtenerValor(), $valor);
     }
 
     public function TestTipoBoleto(){
         $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
-        $boleto = new Boleto($valor,$colectivo, $tarjetaGratis,NULL,NULL,NULL);
+        $boleto = new Boleto($valor,$colectivo, $tarjetaGratis,NULL,NULL,NULL,0);
         $tarjetaJose = new Tarjeta();
         
         $tarjetaJose->recargar(20);
