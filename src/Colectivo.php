@@ -30,9 +30,8 @@ class Colectivo implements ColectivoInterface {
 
     public function pagarCon(TarjetaInterface $tarjeta, TiempoInterface $tiempo){
         
-        $multiplicador = 1;
         $fecha_actual = $tiempo->time();
-
+        //$multiplicador = 1;
         if(get_class($tarjeta) == "TrabajoTarjeta\FranquiciaMedia"){
             if( $tarjeta->ObtenerUltBol()==NULL ){
             
@@ -55,7 +54,8 @@ class Colectivo implements ColectivoInterface {
         }
 
         $precio_efectivo = $tarjeta->obtenerMonto() * $multiplicador;
-    	if($tarjeta->obtenerPlus2() == FALSE && $tarjeta->obtenerSaldo() >= ($precio_efectivo*3)){
+    	
+        if($tarjeta->obtenerPlus2() == FALSE && $tarjeta->obtenerSaldo() >= ($precio_efectivo*3)){
             $tarjeta->restarSaldo();
             $boleto= new Boleto($precio_efectivo,$this,$tarjeta,$precio_efectivo*3,"Normal","Abona 2 viajes plus",$fecha_actual);
             $tarjeta->CambiarUltBol($boleto);
