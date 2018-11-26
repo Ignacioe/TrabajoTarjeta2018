@@ -9,6 +9,7 @@ class Tarjeta implements TarjetaInterface {
 	protected $viajesPlus2;
 	protected $monto = 14.80;
 	protected $Ult_boleto;
+	protected $tipo;
 
     public function __construct(){
       $this->saldo=0.0;
@@ -16,6 +17,7 @@ class Tarjeta implements TarjetaInterface {
       $this->viajesPlus1=TRUE;
 	  $this->viajesPlus2=TRUE;
 	  $this->Ult_boleto = NULL;
+	  $this->tipo = "Normal";
     }
 
     public function recargar($monto) {
@@ -59,6 +61,10 @@ class Tarjeta implements TarjetaInterface {
 
 	public function obtenerPlus1 (){
 		return $this->viajesPlus1;
+	}
+
+	public function obtenerTipo (){
+		return $this->tipo;
 	}
 	
 	public function obtenerPlus2 (){

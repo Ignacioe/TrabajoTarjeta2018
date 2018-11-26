@@ -32,7 +32,7 @@ class Colectivo implements ColectivoInterface {
         
         $fecha_actual = $tiempo->time();
         $multiplicador = 1;
-        if(get_class($tarjeta) == "TrabajoTarjeta\FranquiciaMedia"){
+        if($tarjeta->obtenerTipo == "Medio"){
             if( $tarjeta->ObtenerUltBol()==NULL ){
             
                 $multiplicador = 1;
@@ -43,7 +43,7 @@ class Colectivo implements ColectivoInterface {
 
                 if($fecha_actual - $ultimo_boleto->obtenerFecha() > 300){
 
-                    $multiplicador = 2;
+                    $multiplicador = 1;
 
                 }
                 else{
