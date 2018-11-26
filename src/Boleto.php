@@ -35,7 +35,7 @@ class Boleto implements BoletoInterface {
     }
 
     public function obtenerFecha() {
-        return $this->fecha
+        return $this->fecha;
     }
 
     public function obtenerTipoBoleto(){
