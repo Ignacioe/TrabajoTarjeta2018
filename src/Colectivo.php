@@ -33,13 +33,11 @@ class Colectivo implements ColectivoInterface {
         $fecha_actual = $tiempo->time();
         $multiplicador = 1;
         if($tarjeta->obtenerTipo() == "Medio"){
-            if( $tarjeta->ObtenerUltBol()==NULL ){
-            
-                $multiplicador = 1;
-            
-            }
-            else{
                 $ultimo_boleto = $tarjeta->ObtenerUltBol();
+
+                if ($ultimo_boleto == NULL){
+                    $multiplicador=1;
+                }
 
                 if($fecha_actual - $ultimo_boleto->obtenerFecha() < 300){
 
@@ -47,11 +45,11 @@ class Colectivo implements ColectivoInterface {
 
                 }
                 else{
+                    
                     $multiplicador = 1;
                 }
                 
             }
-        }
 
         $precio_efectivo = $tarjeta->obtenerMonto() * $multiplicador;
     	
