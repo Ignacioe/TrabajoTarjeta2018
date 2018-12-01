@@ -5,9 +5,7 @@ namespace TrabajoTarjeta;
 class Colectivo implements ColectivoInterface {
 
     protected $linea;
-
     protected $empresa;
-
     protected $numero;
 
     public function __construct($linea, $empresa, $numero) {
@@ -34,66 +32,59 @@ class Colectivo implements ColectivoInterface {
         $multiplicador = 1;
         $ultimo_boleto = $tarjeta->ObtenerUltBol();
 
-        if($tarjeta->obtenerTipo() == "Medio"){
-
-                if ($ultimo_boleto == NULL){
-                    $multiplicador=1;
-                }
-                else
-                {
-                    if($fecha_actual - $ultimo_boleto->obtenerFecha() < 300){
-
-                        $multiplicador = 2;
-
-                    }
-                    else{
-                        
-                        $multiplicador = 1;
-                    }
-                }
+        if($tarjeta->obtenerTipo() == "Medio"||$tarjeta->obtenerTipo() == "Normal"){
+            if($fecha_actual - $ultimo_boleto->obtenerFecha() < 300){
+                $multiplicador = 0.5;
             }
+        }
+        if($tarjeta->obtenerTipo() == "Gratis"){
+            $multiplicador = 0;
+        }
 
         $precio_efectivo = $tarjeta->obtenerMonto() * $multiplicador;
-    	
+        
         if($tarjeta->obtenerPlus2() == FALSE && $tarjeta->obtenerSaldo() >= ($precio_efectivo*3)){
             $tarjeta->restarSaldo();
-            $boleto= new Boleto($precio_efectivo,$this,$tarjeta,$precio_efectivo*3,"Normal","Abona 2 viajes plus",$fecha_actual);
-            $tarjeta->CambiarUltBol($boleto);
-            return $boleto;
+            $normaloplus="Normal";
+            $pago="Abona 2 Viajes Plus";
+            $mult=3;
         }
         else{
             if($tarjeta->obtenerPlus1() == FALSE ){
                 if ($tarjeta->obtenerSaldo() >= ($precio_efectivo*2)){
                     $tarjeta->restarSaldo();
-                    $boleto= new Boleto($precio_efectivo,$this,$tarjeta,$precio_efectivo*2,"Normal","Abona 1 viaje plus",$fecha_actual);
-                    $tarjeta->CambiarUltBol($boleto);
-                    return $boleto;
+                    $normaloplus="Normal";
+                    $pago="Abona 1 viaje plus";
+                    $mult=2;
                 }
                 else{
                     if($tarjeta->obtenerPlus2() == FALSE){
                         return FALSE;
                     }
-                    $tarjeta->CambiarPlus(2);               //Si no tengo credito y ya use el plus1, puedo usar el plus2
-                    $boleto= new Boleto($precio_efectivo,$this,$tarjeta,0.0,"Viaje Plus","",$fecha_actual);
-                    $tarjeta->CambiarUltBol($boleto);
-                    return $boleto;
+                $tarjeta->CambiarPlus(2);               //Si no tengo credito y ya use el plus1, puedo usar el plus2
+                $normaloplus="Viaje Plus";
+                $pago="";
+                $mult=0;
                 }
             }
             else{
                 if($tarjeta->obtenerSaldo() >= $precio_efectivo){
                     $tarjeta->restarSaldo();
-                    $boleto= new Boleto($precio_efectivo,$this,$tarjeta,$precio_efectivo,"Normal","",$fecha_actual);
-                    $tarjeta->CambiarUltBol($boleto);
-                    return $boleto;
+                    $normaloplus="Normal";
+                    $pago="";
+                    $mult=1;
                 }
                 else{
                     $tarjeta->CambiarPlus(1);
-                    $boleto= new Boleto($precio_efectivo,$this,$tarjeta,0.0,"Viaje Plus","",$fecha_actual);
-                    $tarjeta->CambiarUltBol($boleto);
-                    return $boleto;  
+                    $normaloplus="Viaje Plus";
+                    $pago="";
+                    $mult=0;
                 }
             }
         }
+        $boleto= new Boleto($precio_efectivo,$this,$tarjeta,$precio_efectivo*$mult,$normaloplus,$pago,$fecha_actual);
+        $tarjeta->CambiarUltBol($boleto);
+        return $boleto;
     }
 }
 ?>

@@ -1,5 +1,4 @@
 <?php
-
 namespace TrabajoTarjeta;
 
 class Tarjeta implements TarjetaInterface {
@@ -21,25 +20,23 @@ class Tarjeta implements TarjetaInterface {
     }
 
     public function recargar($monto) {
-        if($monto==10 || $monto==20 || $monto==30 || $monto==50 || $monto==100 || $monto==510.15 || $monto==962.59 ){
-			if($monto==510.15){
-				$this->saldo += $monto;
-				$this->saldo += 81.93;
-				return TRUE;
-		  	}
-	  
-		 	if($monto==962.59){
+        if($monto==10 || $monto==20 || $monto==30 || $monto==50 || $monto==100){
+			$this->saldo += $monto;
+			return TRUE;
+		}
+
+		if($monto==962.59){
 				$this->saldo += $monto;
 				$this->saldo += 221.58;
 				return TRUE;
-		  }
+		}
 
-		  $this->saldo += $monto;
-		  return TRUE;
-			
-		 }
-		
-		 return FALSE;
+		if($monto==510.15){
+				$this->saldo += $monto;
+				$this->saldo += 81.93;
+				return TRUE;
+		}
+		return FALSE;
     }
 
 
@@ -48,7 +45,8 @@ class Tarjeta implements TarjetaInterface {
 	}
 
 	public function CambiarUltBol($boleto) {
-      $this->Ult_boleto=$boleto;
+	  $this->Ult_boleto=$boleto;
+	  return TRUE;
 	}
 
 	public function ObtenerUltBol() {
@@ -63,12 +61,12 @@ class Tarjeta implements TarjetaInterface {
 		return $this->viajesPlus1;
 	}
 
-	public function obtenerTipo (){
-		return $this->tipo;
-	}
-	
 	public function obtenerPlus2 (){
 		return $this->viajesPlus2;
+	}
+
+	public function obtenerTipo (){
+		return $this->tipo;
 	}
   
 	public function CambiarPlus($op){
@@ -86,23 +84,20 @@ class Tarjeta implements TarjetaInterface {
 
     public function restarSaldo() {
     
- 		if ($this->viajesPlus2==FALSE){ 	//Si viaje plus2 es false, tengo que pagar 2 plus y un boleto.
-				$this->viajesPlus1=TRUE;	//Cambio los plus a true
-				$this->viajePlus2 = TRUE;
- 				$this->saldo -= ($this->obtenerMonto()*3); 	//le resto al saldo los 3 boletos
- 				return;
- 		}
- 		else{
-			 
-			if($this->viajesPlus1 == FALSE ){	//Si solo tengo que pagar 1 plus
+ 		if ($this->viajesPlus2==FALSE){ 						//Si viaje plus2 es false, tengo que pagar 2 plus y un boleto.
+			$this->viajesPlus1=TRUE;							//Cambio los plus a true
+			$this->viajePlus2 = TRUE;
+ 			$this->saldo -= ($this->obtenerMonto()*3); 	//le resto al saldo los 2 plus y el boleto
+ 			return;
+ 		}else{
+			if($this->viajesPlus1 == FALSE ){					//Si solo tengo que pagar 1 plus
  				$this->viajesPlus1 = TRUE;
- 				$this->saldo -= ($this->obtenerMonto()*2);			//Resto el plus y 1 boleto
+ 				$this->saldo -= ($this->obtenerMonto()*2);	//Resto el plus y 1 boleto
  				return;
- 			}
- 				else{
-					$this->saldo -= $this->obtenerMonto();	
- 					return;
-				}
+ 			}else{
+				$this->saldo -= $this->obtenerMonto();	
+				return;
+			}
  		}
 	}
 }

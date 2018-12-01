@@ -3,8 +3,11 @@ namespace TrabajoTarjeta;
 
 interface TiempoInterface {
 
-	public function time();
-
-
+	/**
+     * Devuelve el la hora actual.
+     *
+     * @return int
+     */
+    public function time();
 
 }

@@ -18,4 +18,19 @@ interface BoletoInterface {
      */
     public function obtenerColectivo();
 
+    /**
+     * Devuelve la fecha en la que se pagó el boleto.
+     *
+     * @return string
+     */
+    public function obtenerFecha();
+
+    /**
+     * Devuelve el tipo de boleto que se paga.
+     *
+     * @return string
+     */
+    public function obtenerTipoBoleto();
+
+ 
 }

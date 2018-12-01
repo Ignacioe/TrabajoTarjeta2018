@@ -5,8 +5,6 @@ namespace TrabajoTarjeta;
 class Boleto implements BoletoInterface {
 
     protected $valor;
-   // protected $tarjeta;
-   // protected $colectivo;
     protected $fecha;
     protected $tipoDeTarjeta;
     protected $totalAbonado;
