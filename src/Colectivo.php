@@ -28,7 +28,7 @@ class Colectivo implements ColectivoInterface {
 
     public function pagarCon(TarjetaInterface $tarjeta, TiempoInterface $tiempo){
         
-        $fecha_actual = $tiempo->time();
+        $fecha_actual = $tiempo->tiempoactual;
         $multiplicador = 1;
         $ultimo_boleto = $tarjeta->ObtenerUltBol();
 
