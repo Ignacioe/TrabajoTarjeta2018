@@ -14,7 +14,7 @@ class ColectivoTest extends TestCase {
     public function testPagarCon() {
     	$colectivo = new Colectivo("142 Rojo", "Semtur", 10);
     	$tarjetaJose = new Tarjeta();
-        $tiempo = new TiempoFalso();
+        $tiempo = new Tiempo();
         
         $this->assertNotEquals( $colectivo->pagarCon($tarjetaJose, $tiempo), FALSE);
         $this->assertNotEquals( $colectivo->pagarCon($tarjetaJose, $tiempo), FALSE);
@@ -28,7 +28,7 @@ class ColectivoTest extends TestCase {
     public function testViajePlus() {
         $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
         $tarjetaJose = new Tarjeta();
-        $tiempo = new TiempoFalso();
+        $tiempo = new Tiempo();
 
         $tarjetaJose->recargar(10);
         $this->assertNotEquals( $colectivo->pagarCon($tarjetaJose, $tiempo), FALSE);

@@ -3,6 +3,6 @@ namespace TrabajoTarjeta;
 
 class Tiempo implements TiempoInterface {
 
-    protected $tiempoactual=0;
+    public $tiempoactual=0;
 
 }
