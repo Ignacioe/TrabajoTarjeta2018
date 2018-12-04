@@ -71,7 +71,7 @@ interface TarjetaInterface {
 
      * @return bool
      */
-    public function CambiarPlus();
+    public function CambiarPlus($op);
 
     /**
      * Devuelve cuanto se paga con este tipo de tarjeta.
