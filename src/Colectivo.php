@@ -33,7 +33,7 @@ class Colectivo implements ColectivoInterface {
         $ultimo_boleto = $tarjeta->ObtenerUltBol();
 
         if($tarjeta->obtenerTipo() == "Medio"||$tarjeta->obtenerTipo() == "Normal"){
-            if($fecha_actual - $ultimo_boleto->obtenerFecha() < 300){
+            if($ultimo_boleto!=NULL&&$fecha_actual - $ultimo_boleto->obtenerFecha() < 300){
                 $multiplicador = 0.5;
             }
         }
