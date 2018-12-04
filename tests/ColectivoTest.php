@@ -8,7 +8,13 @@ class ColectivoTest extends TestCase {
 
     public function testNombre() {
     	$colectivo = new Colectivo("142 Rojo", "Semtur", 10);
-    	$this->assertEquals($colectivo->linea(), "142 Rojo");
+        $this->assertEquals($colectivo->linea(), "142 Rojo");
+        $this->assertEquals($colectivo->empresa(), "Semtur");
+        $this->assertEquals($colectivo->numero(), 10);
+        $colectivo2 = new Colectivo("Alvarez", "Interbus", 420);
+        $this->assertEquals($colectivo2->linea(), "Alvarez");
+        $this->assertEquals($colectivo2->empresa(), "Interbus");
+        $this->assertEquals($colectivo2->numero(), 420);
     }
 
     public function testPagarCon() {
