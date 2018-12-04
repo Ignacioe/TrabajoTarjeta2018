@@ -16,7 +16,7 @@ class BoletoTest extends TestCase {
         $this->assertEquals($boleto->obtenerValor(), $valor);
     }
 
-    public function TestTipoBoleto(){
+    public function testTipoBoleto(){
         $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
         $boleto = new Boleto($valor,$colectivo, $tarjetaGratis,NULL,NULL,NULL,0);
         $tarjetaJose = new Tarjeta();
@@ -35,7 +35,7 @@ class BoletoTest extends TestCase {
         
     }
 
-    public function TestObtenerColectivo(){
+    public function testObtenerColectivo(){
         $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
         $tarjetaJose = new Tarjeta();
         $boleto = new Boleto($valor,$colectivo, $tarjetaJose,NULL,NULL,NULL,0);
