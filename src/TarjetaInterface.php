@@ -23,11 +23,12 @@ interface TarjetaInterface {
     public function obtenerSaldo();
 
     /**
-     * Devuelve true espues de actualizar cual fue el ultimo boleto pagado
-     *
+     * Devuelve true despues de actualizar cual fue el ultimo boleto pagado
+     * @param float $boleto
+     * 
      * @return bool
      */
-    public function CambiarUltBol();
+    public function CambiarUltBol($boleto);
 
     /**
      * Devuelve el ultimo boleto pagado.
