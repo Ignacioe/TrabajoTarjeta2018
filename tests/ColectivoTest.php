@@ -59,7 +59,7 @@ class ColectivoTest extends TestCase {
 
         $this->assertEquals($tarjetaJose->obtenerSaldo(), 92.6-7.4);
 
-        $tiempo->time()=$tiempo->time()+360;
+        $tiempo->tiempoactual+=360;
 
         $colectivo->pagarCon($tarjetaJose, $tiempo);
 
