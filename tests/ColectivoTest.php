@@ -47,7 +47,7 @@ class ColectivoTest extends TestCase {
     public function testFranquiciaMedia(){
         $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
         $tarjetaJose = new FranquiciaMedia();
-        $tiempo = new TiempoFalso();
+        $tiempo = new Tiempo();
 
         $tarjetaJose->recargar(100);
 
@@ -59,7 +59,7 @@ class ColectivoTest extends TestCase {
 
         $this->assertEquals($tarjetaJose->obtenerSaldo(), 92.6-7.4);
 
-        $time->Avanzar(360);
+        $tiempo->time()=$tiempo->time()+360;
 
         $colectivo->pagarCon($tarjetaJose, $tiempo);
 
