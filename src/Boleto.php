@@ -29,7 +29,7 @@ class Boleto implements BoletoInterface {
     }
 
     public function obtenerColectivo() {
-        return $this->colectivo;
+        return $this->lineaDeColectivo;
     }
 
     public function obtenerFecha() {
