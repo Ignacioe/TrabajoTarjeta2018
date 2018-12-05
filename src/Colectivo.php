@@ -100,7 +100,7 @@ class Colectivo implements ColectivoInterface {
     public function esTrasbordo(TarjetaInterface $tarjeta, TiempoInterface $tiempo){
         
         $bol =$tarjeta->ObtenerUltBol();
-        if($bol->obtenerFecha()!=NULL){
+        if($bol->obtenerFecha()!=FALSE){
             $tiempoDesdeTransbordo = ($tiempo->tiempoactual)-($bol->obtenerFecha());
         } else {
             $tiempoDesdeTransbordo = 120;
