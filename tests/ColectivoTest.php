@@ -70,6 +70,7 @@ class ColectivoTest extends TestCase {
         $colectivo->pagarCon($tarjetaMedio, $tiempo);
         $this->assertEquals($tarjetaMedio->obtenerSaldo(), 85.2-7.4);  
 
+        $tiempo->avanzar(2);
         $colectivo->pagarCon($tarjetaMedio, $tiempo);
         $this->assertEquals($tarjetaMedio->obtenerSaldo(), 77.8-14.8);                
     }
