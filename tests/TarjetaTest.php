@@ -37,42 +37,50 @@ class TarjetaTest extends TestCase {
     }
 
 
-    public function testFranquicia(){
-        $tarjetaGratis = new Franquicia();
-        $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
-        $tiempo = new Tiempo();
-
-        for($i=0; $i < 4; $i++){
-            $this->assertNotEquals($colectivo->pagarCon($tarjetaGratis, $tiempo),FALSE);
-        }
-
-
-    }
-
     public function testFranquiciaMedia(){
         $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
         $tarjetaMedio = new FranquiciaMedia();
+        $tarjetaMedio2 = new FranquiciaMedia();
         $tiempo = new Tiempo();
+        $tarjetaMedio2->recargar(100);
+        $tiempo->avanzar(10);
+        $colectivo->pagarCon($tarjetaMedio2, $tiempo);
+        $this->assertEquals($tarjetaMedio2->obtenerSaldo(), 100-2.5);
 
+        $tiempo->avanzar(10);
+
+        $colectivo->pagarCon($tarjetaMedio2, $tiempo);
+        $this->assertEquals($tarjetaMedio2->obtenerSaldo(), 97.5-2.5);
+
+        $tiempo->avanzar(10);
+
+        $colectivo->pagarCon($tarjetaMedio2, $tiempo);
+        $this->assertEquals($tarjetaMedio2->obtenerSaldo(), 95-2.5);  
+
+        $tiempo->avanzar(2);
+        $colectivo->pagarCon($tarjetaMedio2, $tiempo);
+        $this->assertEquals($tarjetaMedio2->obtenerSaldo(), 92.5-5);  
+
+        $tiempo->avanzar(1440);
         $tarjetaMedio->recargar(100);
         
         $tiempo->avanzar(10);
         $colectivo->pagarCon($tarjetaMedio, $tiempo);
-        $this->assertEquals($tarjetaMedio->obtenerSaldo(), 100-7.4);
+        $this->assertEquals($tarjetaMedio->obtenerSaldo(), 100-7.5);
 
         $tiempo->avanzar(10);
 
         $colectivo->pagarCon($tarjetaMedio, $tiempo);
-        $this->assertEquals($tarjetaMedio->obtenerSaldo(), 92.6-7.4);
+        $this->assertEquals($tarjetaMedio->obtenerSaldo(), 92.6-7.5);
 
         $tiempo->avanzar(10);
 
         $colectivo->pagarCon($tarjetaMedio, $tiempo);
-        $this->assertEquals($tarjetaMedio->obtenerSaldo(), 85.2-7.4);  
+        $this->assertEquals($tarjetaMedio->obtenerSaldo(), 85.2-7.5);  
 
         $tiempo->avanzar(2);
         $colectivo->pagarCon($tarjetaMedio, $tiempo);
-        $this->assertEquals($tarjetaMedio->obtenerSaldo(), 77.8-14.8);                
+        $this->assertEquals($tarjetaMedio->obtenerSaldo(), 77.8-15);                
     }
 
     public function testFranquiciaTotal(){

@@ -2,7 +2,7 @@
 namespace TrabajoTarjeta;
 
 class Franquicia extends Tarjeta {
-    protected $monto = 14.80;
+    protected $monto = 15;
     public $fechaViaje1=-1;
     public $fechaViaje2=-1;
     public function __construct(){

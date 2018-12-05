@@ -6,7 +6,7 @@ class Tarjeta implements TarjetaInterface {
     protected $ID;
     protected $viajesPlus1;
 	protected $viajesPlus2;
-	protected $monto = 14.80;
+	protected $monto = 15;
 	protected $Ult_boleto;
 	protected $tipo;
 	protected $ultViajeTransbordo;
