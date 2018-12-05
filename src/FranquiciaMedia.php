@@ -2,7 +2,7 @@
 namespace TrabajoTarjeta;
 
 class FranquiciaMedia extends Tarjeta {
-    protected $monto = 7.40;
+    protected $monto = 14.8;
 
     public function __construct(){
         $this->saldo=0.0;
