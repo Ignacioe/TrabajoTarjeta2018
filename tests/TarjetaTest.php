@@ -82,18 +82,18 @@ class TarjetaTest extends TestCase {
 
         $tarjetaGratis->recargar(100);
 
-        $colectivo->pagarCon($tarjetaMedio, $tiempo);
-        $this->assertEquals($tarjetaMedio->obtenerSaldo(), 100);
+        $colectivo->pagarCon($tarjetaGratis, $tiempo);
+        $this->assertEquals($tarjetaGratis->obtenerSaldo(), 100);
 
         $tiempo->avanzar(10);
 
-        $colectivo->pagarCon($tarjetaMedio, $tiempo);
-        $this->assertEquals($tarjetaMedio->obtenerSaldo(), 100);
+        $colectivo->pagarCon($tarjetaGratis, $tiempo);
+        $this->assertEquals($tarjetaGratis->obtenerSaldo(), 100);
 
         $tiempo->avanzar(10);
 
-        $colectivo->pagarCon($tarjetaMedio, $tiempo);
-        $this->assertEquals($tarjetaMedio->obtenerSaldo(), 100-14.8);
+        $colectivo->pagarCon($tarjetaGratis, $tiempo);
+        $this->assertEquals($tarjetaGratis->obtenerSaldo(), 100-14.8);
     }
 }
 
