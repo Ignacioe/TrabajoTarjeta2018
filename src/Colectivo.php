@@ -37,6 +37,8 @@ class Colectivo implements ColectivoInterface {
                 if($fecha_actual - $ultimo_boleto->obtenerFecha() > 4){
                     $multiplicador = 0.5;
                 }
+            } else {
+                $multiplicador = 0.5;
             }
         }
         if($tarjeta->obtenerTipo() == "Gratis"){
