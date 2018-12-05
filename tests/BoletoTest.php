@@ -41,6 +41,6 @@ class BoletoTest extends TestCase {
         $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
         $boleto = new Boleto($valor,$colectivo, $tarjetaJose,NULL,NULL,NULL,0);
 
-        $this->assertequals($boleto->obtenerColectivo(),$colectivo);
+        $this->assertequals($boleto->obtenerColectivo(),"142 Rojo");
     }
 }
