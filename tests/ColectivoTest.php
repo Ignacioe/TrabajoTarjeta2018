@@ -58,18 +58,20 @@ class ColectivoTest extends TestCase {
         $tarjetaMedio->recargar(100);
 
         $colectivo->pagarCon($tarjetaMedio, $tiempo);
-
         $this->assertEquals($tarjetaMedio->obtenerSaldo(), 100-7.4);
 
-        $colectivo->pagarCon($tarjetaMedio, $tiempo);
+        $tiempo->avanzar(10);
 
+        $colectivo->pagarCon($tarjetaMedio, $tiempo);
         $this->assertEquals($tarjetaMedio->obtenerSaldo(), 92.6-7.4);
 
-        $tiempo->avanzar(360);
+        $tiempo->avanzar(10);
 
         $colectivo->pagarCon($tarjetaMedio, $tiempo);
+        $this->assertEquals($tarjetaMedio->obtenerSaldo(), 85.2-7.4);  
 
-        $this->assertEquals($tarjetaMedio->obtenerSaldo(), 85.2-7.4);                
+        $colectivo->pagarCon($tarjetaMedio, $tiempo);
+        $this->assertEquals($tarjetaMedio->obtenerSaldo(), 77.8-14.8);                
     }
 
 }
