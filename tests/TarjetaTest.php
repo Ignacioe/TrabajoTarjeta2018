@@ -74,5 +74,26 @@ class TarjetaTest extends TestCase {
         $colectivo->pagarCon($tarjetaMedio, $tiempo);
         $this->assertEquals($tarjetaMedio->obtenerSaldo(), 77.8-14.8);                
     }
+
+    public function testFranquiciaTotal(){
+        $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
+        $tarjetaGratis = new Franquicia();
+        $tiempo = new Tiempo();
+
+        $tarjetaGratis->recargar(100);
+
+        $colectivo->pagarCon($tarjetaMedio, $tiempo);
+        $this->assertEquals($tarjetaMedio->obtenerSaldo(), 100);
+
+        $tiempo->avanzar(10);
+
+        $colectivo->pagarCon($tarjetaMedio, $tiempo);
+        $this->assertEquals($tarjetaMedio->obtenerSaldo(), 100);
+
+        $tiempo->avanzar(10);
+
+        $colectivo->pagarCon($tarjetaMedio, $tiempo);
+        $this->assertEquals($tarjetaMedio->obtenerSaldo(), 100-14.8);
+    }
 }
 
