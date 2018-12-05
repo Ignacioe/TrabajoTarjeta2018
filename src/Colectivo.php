@@ -40,21 +40,27 @@ class Colectivo implements ColectivoInterface {
             }
         }
         if($tarjeta->obtenerTipo() == "Gratis"){
-            $multiplicador = 0;
+            if($tiempo->dia!=$tarjeta->fechaViaje1){
+                $tarjeta->fechaViaje1=$tiempo->dia;
+                $multiplicador = 0;
+            } elseif ($tiempo->dia!=$tarjeta->fechaViaje2){
+                $tarjeta->fechaViaje2=$tiempo->dia;
+                $multiplicador = 0;
+            }
         }
 
         $precio_efectivo = $tarjeta->obtenerMonto() * $multiplicador;
         
-        if($tarjeta->obtenerPlus2() == FALSE && $tarjeta->obtenerSaldo() >= ($precio_efectivo*3)){
-            $tarjeta->restarSaldo();
+        if($tarjeta->obtenerPlus2() == FALSE && $tarjeta->obtenerSaldo() >= $precio_efectivo+($tarjeta->obtenerMonto()*2){
+            $tarjeta->restarSaldo($precio_efectivo);
             $normaloplus="Normal";
             $pago="Abona 2 Viajes Plus";
             $mult=3;
         }
         else{
             if($tarjeta->obtenerPlus1() == FALSE ){
-                if ($tarjeta->obtenerSaldo() >= ($precio_efectivo*2)){
-                    $tarjeta->restarSaldo();
+                if ($tarjeta->obtenerSaldo() >= ($precio_efectivo+$tarjeta->obtenerMonto())){
+                    $tarjeta->restarSaldo($precio_efectivo);
                     $normaloplus="Normal";
                     $pago="Abona 1 viaje plus";
                     $mult=2;
@@ -71,7 +77,7 @@ class Colectivo implements ColectivoInterface {
             }
             else{
                 if($tarjeta->obtenerSaldo() >= $precio_efectivo){
-                    $tarjeta->restarSaldo();
+                    $tarjeta->restarSaldo($precio_efectivo);
                     $normaloplus="Normal";
                     $pago="";
                     $mult=1;

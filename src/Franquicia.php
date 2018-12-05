@@ -2,8 +2,9 @@
 namespace TrabajoTarjeta;
 
 class Franquicia extends Tarjeta {
-    protected $monto = 0.0;
-
+    protected $monto = 14.80;
+    protected $fechaViaje1=-1;
+    protected $fechaViaje2=-1;
     public function __construct(){
         $this->saldo=0.0;
         $this->ID=rand();

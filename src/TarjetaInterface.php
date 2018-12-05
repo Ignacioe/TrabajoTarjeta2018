@@ -83,8 +83,9 @@ interface TarjetaInterface {
     /**
      * Cambia el saldo de la tarjeta si se tiene suficiente saldo para pagar el boleto, sino paga con un Plus.
      *
+     * @param int $precio
      */
-    public function restarSaldo();
+    public function restarSaldo($precio);
 
 
 

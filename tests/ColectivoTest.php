@@ -52,24 +52,24 @@ class ColectivoTest extends TestCase {
 
     public function testFranquiciaMedia(){
         $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
-        $tarjetaNormal = new FranquiciaMedia();
+        $tarjetaMedio = new FranquiciaMedia();
         $tiempo = new Tiempo();
 
         $tarjetaNormal->recargar(100);
 
-        $colectivo->pagarCon($tarjetaNormal, $tiempo);
+        $colectivo->pagarCon($tarjetaMedio, $tiempo);
 
-        $this->assertEquals($tarjetaNormal->obtenerSaldo(), 100-7.4);
+        $this->assertEquals($tarjetaMedio->obtenerSaldo(), 100-7.4);
 
-        $colectivo->pagarCon($tarjetaNormal, $tiempo);
+        $colectivo->pagarCon($tarjetaMedio, $tiempo);
 
-        $this->assertEquals($tarjetaNormal->obtenerSaldo(), 92.6-7.4);
+        $this->assertEquals($tarjetaMedio->obtenerSaldo(), 92.6-7.4);
 
-        $tiempo->tiempoactual+=360;
+        $tiempo->avanzar(360);
 
-        $colectivo->pagarCon($tarjetaNormal, $tiempo);
+        $colectivo->pagarCon($tarjetaMedio, $tiempo);
 
-        $this->assertEquals($tarjetaNormal->obtenerSaldo(), 85.2-7.4);                
+        $this->assertEquals($tarjetaMedio->obtenerSaldo(), 85.2-7.4);                
     }
 
 }
