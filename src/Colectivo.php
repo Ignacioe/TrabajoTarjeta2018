@@ -34,8 +34,8 @@ class Colectivo implements ColectivoInterface {
 
         if($tarjeta->obtenerTipo() == "Medio"){
             if($ultimo_boleto!=NULL){
-                if($fecha_actual - $ultimo_boleto->obtenerFecha() > 5){
-                    $multiplicador = 1/2;
+                if($fecha_actual - $ultimo_boleto->obtenerFecha() > 4){
+                    $multiplicador = 0.5;
                 }
             }
         }
