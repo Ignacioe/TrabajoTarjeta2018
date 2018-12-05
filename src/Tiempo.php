@@ -27,4 +27,39 @@ class Tiempo implements TiempoInterface {
         }
         $this->tiempoactual+=$cantMinutos;
     }
+
+    public function esSabadoNoche(){
+        if(($this->dia%7==6)&&($this->hora>13)&&($this->hora<22)){
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    public function esSabadoDia(){
+        if(($this->dia%7==6)&&($this->hora>5)&&($this->hora<14)){
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    public function esNoche(){
+        if((($this->hora>21)&&($this->hora<24))||(($this->hora>=0)&&($this->hora<6))){
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    public function esDomingoFeriado(){
+        if((($this->dia%7==0)||in_array($this->dia,$this->feriados))&&($this->hora>5)&&($this->hora<22)){
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    public function esSemanaDia(){
+        if(($this->dia%7>0)&&($this->dia%7<6)&&($this->hora>5)&&($this->hora<14)){
+            return TRUE;
+        }
+        return FALSE;
+    }
 }

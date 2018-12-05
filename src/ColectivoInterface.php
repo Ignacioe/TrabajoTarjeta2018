@@ -37,4 +37,14 @@ interface ColectivoInterface {
      */
     public function pagarCon(TarjetaInterface $tarjeta, TiempoInterface $tiempo);
 
+    /**
+     * Devuelve si ese dia y hora son validos para trasbordo
+     *
+     * @param TarjetaInterface $tarjeta
+     * @param TiempoInterface $tiempo
+     * 
+     * @return int
+     */
+    public function esTrasbordo(TarjetaInterface $tarjeta, TiempoInterface $tiempo);
+
 }

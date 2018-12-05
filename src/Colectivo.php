@@ -50,7 +50,7 @@ class Colectivo implements ColectivoInterface {
                 $multiplicador = 0;
             }
         }
-
+        $multiplicador *= $this->esTrasbordo($tarjeta, $tiempo);
         $precio_efectivo = $tarjeta->obtenerMonto() * $multiplicador;
         
         if($tarjeta->obtenerPlus2() == FALSE && $tarjeta->obtenerSaldo() >= $precio_efectivo+($tarjeta->obtenerMonto()*2)){
@@ -95,6 +95,21 @@ class Colectivo implements ColectivoInterface {
         $boleto= new Boleto($precio_efectivo,$this,$tarjeta,$precio_efectivo*$mult,$normaloplus,$pago,$fecha_actual);
         $tarjeta->CambiarUltBol($boleto);
         return $boleto;
+    }
+
+    public function esTrasbordo(TarjetaInterface $tarjeta, TiempoInterface $tiempo){
+        protected $tiempoDesdeTransbordo = $tiempo->tiempoactual-($tarjeta->Ult_boleto->fecha);
+        if(($tiempo->esDomingoFeriado()||$tiempo->esSabadoNoche())||$tiempo->esNoche()){
+            if($tiempoDesdeTransbordo<91){
+                return (1/3);
+            }
+        }
+        if($tiempo->esSabadoDia()||$tiempo->esSemanaDia()){
+            if($tiempoDesdeTransbordo<61){
+                return (1/3);
+            }
+        }
+        return 1;
     }
 }
 ?>
