@@ -21,17 +21,16 @@ class BoletoTest extends TestCase {
         $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
         $tarjetaJose = new Tarjeta();
         $boleto = new Boleto($valor,$colectivo, $tarjetaJose,NULL,NULL,NULL,0);
-        
+        $tiempo = new Tiempo();
         $tarjetaJose->recargar(20);
         
-        $boleto= $colectivo->pagarCon($tarjetaJose);
-        
+        $boleto= $colectivo->pagarCon($tarjetaJose,$tiempo);
         $this->assertEquals($boleto->obtenerTipoBoleto(),"Normal");
        
-        $boleto= $colectivo->pagarCon($tarjetaJose);
+        $boleto= $colectivo->pagarCon($tarjetaJose,$tiempo);
         $this->assertEquals($boleto->obtenerTipoBoleto(),"Viaje Plus");
         
-        $boleto= $colectivo->pagarCon($tarjetaJose);
+        $boleto= $colectivo->pagarCon($tarjetaJose,$tiempo);
         $this->assertEquals($boleto->obtenerTipoBoleto(),"Viaje Plus");
         
     }
