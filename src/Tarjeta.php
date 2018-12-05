@@ -18,7 +18,7 @@ class Tarjeta implements TarjetaInterface {
 	  $this->viajesPlus2=TRUE;
 	  $this->Ult_boleto = NULL;
 	  $this->tipo = "Normal";
-	  $this->$ultViajeTrasbordo=FALSE;
+	  $this->ultViajeTrasbordo=FALSE;
     }
 
     public function recargar($monto) {
