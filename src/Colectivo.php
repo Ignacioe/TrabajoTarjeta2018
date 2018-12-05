@@ -98,8 +98,13 @@ class Colectivo implements ColectivoInterface {
     }
 
     public function esTrasbordo(TarjetaInterface $tarjeta, TiempoInterface $tiempo){
+        
         $bol =$tarjeta->ObtenerUltBol();
-        $tiempoDesdeTransbordo = $tiempo->tiempoactual-($bol->obtenerFecha());
+        if($bol->obtenerFecha()!=NULL){
+            $tiempoDesdeTransbordo = ($tiempo->tiempoactual)-($bol->obtenerFecha());
+        } else {
+            $tiempoDesdeTransbordo = 120;
+        }
         if(($tiempo->esDomingoFeriado()||$tiempo->esSabadoNoche())||$tiempo->esNoche()){
             if($tiempoDesdeTransbordo<91&&$tarjeta->ultViajeTrasbordo==FALSE){
                 $tarjeta->ultViajeTrasbordo=TRUE;
