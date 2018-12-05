@@ -19,57 +19,57 @@ class ColectivoTest extends TestCase {
 
     public function testPagarCon() {
     	$colectivo = new Colectivo("142 Rojo", "Semtur", 10);
-    	$tarjetaJose = new Tarjeta();
+    	$tarjetaNormal = new Tarjeta();
         $tiempo = new Tiempo();
         
-        $this->assertNotEquals( $colectivo->pagarCon($tarjetaJose, $tiempo), FALSE);
-        $this->assertNotEquals( $colectivo->pagarCon($tarjetaJose, $tiempo), FALSE);
-        $this->assertFalse($colectivo->pagarCon($tarjetaJose, $tiempo));
+        $this->assertNotEquals( $colectivo->pagarCon($tarjetaNormal, $tiempo), FALSE);
+        $this->assertNotEquals( $colectivo->pagarCon($tarjetaNormal, $tiempo), FALSE);
+        $this->assertFalse($colectivo->pagarCon($tarjetaNormal, $tiempo));
 
-        $tarjetaJose->recargar(50);
-    	$this->assertNotEquals( $colectivo->pagarCon($tarjetaJose, $tiempo), FALSE);
+        $tarjetaNormal->recargar(50);
+    	$this->assertNotEquals( $colectivo->pagarCon($tarjetaNormal, $tiempo), FALSE);
 
     }
 
     public function testViajePlus() {
         $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
-        $tarjetaJose = new Tarjeta();
+        $tarjetaNormal = new Tarjeta();
         $tiempo = new Tiempo();
 
-        $tarjetaJose->recargar(10);
-        $this->assertNotEquals( $colectivo->pagarCon($tarjetaJose, $tiempo), FALSE);
-        $this->assertNotEquals( $colectivo->pagarCon($tarjetaJose, $tiempo), FALSE);
-        $this->assertFalse($colectivo->pagarCon($tarjetaJose, $tiempo));
+        $tarjetaNormal->recargar(10);
+        $this->assertNotEquals( $colectivo->pagarCon($tarjetaNormal, $tiempo), FALSE);
+        $this->assertNotEquals( $colectivo->pagarCon($tarjetaNormal, $tiempo), FALSE);
+        $this->assertFalse($colectivo->pagarCon($tarjetaNormal, $tiempo));
         
-        $tarjetaJose2 = new Tarjeta();
-        $tarjetaJose2->recargar(10);
-        $colectivo->pagarCon($tarjetaJose2, $tiempo);
+        $tarjetaNormal2 = new Tarjeta();
+        $tarjetaNormal2->recargar(10);
+        $colectivo->pagarCon($tarjetaNormal2, $tiempo);
 
-        $tarjetaJose2->recargar(20);
-        $colectivo->pagarCon($tarjetaJose2, $tiempo);
-        $this->assertEquals($tarjetaJose2->obtenerSaldo(), 0.4);
+        $tarjetaNormal2->recargar(20);
+        $colectivo->pagarCon($tarjetaNormal2, $tiempo);
+        $this->assertEquals($tarjetaNormal2->obtenerSaldo(), 0.4);
     }
 
     public function testFranquiciaMedia(){
         $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
-        $tarjetaJose = new FranquiciaMedia();
+        $tarjetaNormal = new FranquiciaMedia();
         $tiempo = new Tiempo();
 
-        $tarjetaJose->recargar(100);
+        $tarjetaNormal->recargar(100);
 
-        $colectivo->pagarCon($tarjetaJose, $tiempo);
+        $colectivo->pagarCon($tarjetaNormal, $tiempo);
 
-        $this->assertEquals($tarjetaJose->obtenerSaldo(), 100-7.4);
+        $this->assertEquals($tarjetaNormal->obtenerSaldo(), 100-7.4);
 
-        $colectivo->pagarCon($tarjetaJose, $tiempo);
+        $colectivo->pagarCon($tarjetaNormal, $tiempo);
 
-        $this->assertEquals($tarjetaJose->obtenerSaldo(), 92.6-7.4);
+        $this->assertEquals($tarjetaNormal->obtenerSaldo(), 92.6-7.4);
 
         $tiempo->tiempoactual+=360;
 
-        $colectivo->pagarCon($tarjetaJose, $tiempo);
+        $colectivo->pagarCon($tarjetaNormal, $tiempo);
 
-        $this->assertEquals($tarjetaJose->obtenerSaldo(), 85.2-7.4);                
+        $this->assertEquals($tarjetaNormal->obtenerSaldo(), 85.2-7.4);                
     }
 
 }
