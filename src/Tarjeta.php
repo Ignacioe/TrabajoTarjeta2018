@@ -7,9 +7,9 @@ class Tarjeta implements TarjetaInterface {
     protected $viajesPlus1;
 	protected $viajesPlus2;
 	protected $monto = 15;
-	protected $Ult_boleto;
+	public $Ult_boleto;
 	protected $tipo;
-	protected $ultViajeTrasbordo;
+	public $ultViajeTrasbordo;
 
     public function __construct(){
       $this->saldo=0.0;
