@@ -2,7 +2,7 @@
 namespace TrabajoTarjeta;
 
 class Tiempo implements TiempoInterface {
-
+    private $feriados = [1,63,64,83,92,109,121,145,168,171,190,229,285,322,342,359,365];
     public $tiempoactual=0;
     public $minutos=0;
     public $hora=0;

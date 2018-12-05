@@ -55,7 +55,7 @@ class ColectivoTest extends TestCase {
         $tarjetaMedio = new FranquiciaMedia();
         $tiempo = new Tiempo();
 
-        $tarjetaNormal->recargar(100);
+        $tarjetaMedio->recargar(100);
 
         $colectivo->pagarCon($tarjetaMedio, $tiempo);
 
