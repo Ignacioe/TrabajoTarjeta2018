@@ -25,5 +25,6 @@ class Tiempo implements TiempoInterface {
         } else {
             $this->minutos+=$cantMinutos;
         }
+        $this->tiempoactual+=$cantMinutos;
     }
 }
