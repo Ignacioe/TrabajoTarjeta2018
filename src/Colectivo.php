@@ -51,7 +51,7 @@ class Colectivo implements ColectivoInterface {
 
         $precio_efectivo = $tarjeta->obtenerMonto() * $multiplicador;
         
-        if($tarjeta->obtenerPlus2() == FALSE && $tarjeta->obtenerSaldo() >= $precio_efectivo+($tarjeta->obtenerMonto()*2){
+        if($tarjeta->obtenerPlus2() == FALSE && $tarjeta->obtenerSaldo() >= $precio_efectivo+($tarjeta->obtenerMonto()*2)){
             $tarjeta->restarSaldo($precio_efectivo);
             $normaloplus="Normal";
             $pago="Abona 2 Viajes Plus";
