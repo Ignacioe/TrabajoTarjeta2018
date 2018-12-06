@@ -91,8 +91,9 @@ class Colectivo implements ColectivoInterface {
     }
 
     public function pagarConMedio(TarjetaInterface $tarjeta, TiempoInterface $tiempo,$ultimo_boleto,$fecha_actual){
+        $fechaUlt=$ultimo_boleto->obtenerFecha();
         if ($ultimo_boleto!=NULL) {
-            if (($fecha_actual-($ultimo_boleto->obtenerFecha()))>4) {
+            if (($fecha_actual-$fechaUlt)>4) {
                 return 0.5;
             }else {
                 return 1;
