@@ -48,7 +48,7 @@ interface ColectivoInterface {
      * @return int
      *  El multiplicador, 0.5 si se paga medio boleto, 1 si se paga normal.
      */
-    public function pagarConMedio(TarjetaInterface $tarjeta, TiempoInterface $tiempo,$ultimo_boleto,$fecha_actual);
+    public function pagarConMedio(TarjetaInterface $tarjeta, TiempoInterface $tiempo, $ultimo_boleto, $fecha_actual);
 
     /**
      * Realiza los pasos extra que hay que hacer si se paga con una franquicia total.
@@ -71,7 +71,7 @@ interface ColectivoInterface {
      * @return bool
      *  TRUE si tiene saldo suficiente para pagar 2 vaijes plus mas su boleto actual, FALSE si no alcanza.
      */
-    public function puedePagarDosPlus(TarjetaInterface $tarjeta, TiempoInterface $tiempo,$precio_efectivo);
+    public function puedePagarDosPlus(TarjetaInterface $tarjeta, TiempoInterface $tiempo, $precio_efectivo);
 
     /**
      * Devuelve si ese dia y hora son validos para trasbordo
