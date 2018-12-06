@@ -35,7 +35,7 @@ class ColectivoTest extends TestCase {
         $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
         $tarjetaNormal = new Tarjeta();
         $tiempo = new Tiempo();
-
+        $tiempo->avanzar(1440);
         $tarjetaNormal->recargar(10);
         $this->assertNotEquals( $colectivo->pagarCon($tarjetaNormal, $tiempo), FALSE);
         $this->assertNotEquals( $colectivo->pagarCon($tarjetaNormal, $tiempo), FALSE);

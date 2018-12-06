@@ -87,7 +87,7 @@ class TarjetaTest extends TestCase {
         $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
         $tarjetaGratis = new Franquicia();
         $tiempo = new Tiempo();
-
+        $tiempo->avanzar(1440);
         $tarjetaGratis->recargar(100);
 
         $colectivo->pagarCon($tarjetaGratis, $tiempo);
