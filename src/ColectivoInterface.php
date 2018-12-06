@@ -64,12 +64,13 @@ interface ColectivoInterface {
      *
      * @param TarjetaInterface $tarjeta
      * @param TiempoInterface $tiempo
-     *
+     * @param $precio_efectivo
+     * 
      * @return bool
      *  TRUE si tiene saldo suficiente para pagar 2 vaijes plus mas su boleto actual, FALSE si no alcanza.
      */
-    public function puedePagarDosPlus(TarjetaInterface $tarjeta, TiempoInterface $tiempo);
-    
+    public function puedePagarDosPlus(TarjetaInterface $tarjeta, TiempoInterface $tiempo,$precio_efectivo);
+
     /**
      * Devuelve si ese dia y hora son validos para trasbordo
      *

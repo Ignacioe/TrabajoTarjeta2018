@@ -43,7 +43,7 @@ class Colectivo implements ColectivoInterface {
         $multiplicador*=$this->esTrasbordo($tarjeta, $tiempo);
         $precio_efectivo=$tarjeta->obtenerMonto()*$multiplicador;
         
-        if ($this->puedePagarDosPlus($tarjeta,$tiempo)) {
+        if ($this->puedePagarDosPlus($tarjeta,$tiempo,$precio_efectivo)) {
             $tarjeta->restarSaldo($precio_efectivo);
             $normaloplus="Normal";
             $pago="Abona 2 Viajes Plus";
@@ -107,7 +107,7 @@ class Colectivo implements ColectivoInterface {
         }
     }
 
-    public function puedePagarDosPlus(TarjetaInterface $tarjeta, TiempoInterface $tiempo){
+    public function puedePagarDosPlus(TarjetaInterface $tarjeta, TiempoInterface $tiempo,$precio_efectivo){
         if($tarjeta->obtenerPlus2()==FALSE&&$tarjeta->obtenerSaldo()>=$precio_efectivo+($tarjeta->obtenerMonto()*2)){
             return TRUE;
         }
