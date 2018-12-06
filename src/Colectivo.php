@@ -37,7 +37,7 @@ class Colectivo implements ColectivoInterface {
                 
             }
             if ($tarjeta->obtenerTipo()=="Gratis") {
-                $multiplicador=$this->pagarConFranquiciaTotal;
+                $multiplicador=$this->pagarConFranquiciaTotal($tarjeta,$tiempo);
             }
         }   
         $multiplicador*=$this->esTrasbordo($tarjeta, $tiempo);
@@ -103,7 +103,7 @@ class Colectivo implements ColectivoInterface {
             $tarjeta->fechaViaje2=$tiempo->dia;
             return 0;
         } else {
-            return 0;
+            return 1;
         }
     }
 
