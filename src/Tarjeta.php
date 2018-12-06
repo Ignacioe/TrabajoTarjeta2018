@@ -16,7 +16,7 @@ class Tarjeta implements TarjetaInterface {
         $this->ID = rand();
         $this->viajesPlus1 = TRUE;
         $this->viajesPlus2 = TRUE;
-        $this->Ult_boleto = NULL;
+        $this->Ult_boleto = new Boleto(0,null,null,0,null,"",-100);
         $this->tipo = "Normal";
         $this->ultViajeTrasbordo = FALSE;
     }
