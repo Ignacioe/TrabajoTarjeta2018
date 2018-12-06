@@ -42,25 +42,7 @@ class TarjetaTest extends TestCase {
         $tarjetaMedio = new FranquiciaMedia();
         $tarjetaMedio2 = new FranquiciaMedia();
         $tiempo = new Tiempo();
-        $tarjetaMedio2->recargar(100);
-        $tiempo->avanzar(10);
-        $colectivo->pagarCon($tarjetaMedio2, $tiempo);
-        $this->assertEquals($tarjetaMedio2->obtenerSaldo(), 100-2.5);
-
-        $tiempo->avanzar(10);
-
-        $colectivo->pagarCon($tarjetaMedio2, $tiempo);
-        $this->assertEquals($tarjetaMedio2->obtenerSaldo(), 97.5-2.5);
-
-        $tiempo->avanzar(10);
-
-        $colectivo->pagarCon($tarjetaMedio2, $tiempo);
-        $this->assertEquals($tarjetaMedio2->obtenerSaldo(), 95-2.5);  
-
-        $tiempo->avanzar(2);
-        $colectivo->pagarCon($tarjetaMedio2, $tiempo);
-        $this->assertEquals($tarjetaMedio2->obtenerSaldo(), 92.5-5);  
-
+       
         $tiempo->avanzar(1440);
         $tarjetaMedio->recargar(100);
         
