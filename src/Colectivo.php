@@ -15,15 +15,15 @@ class Colectivo implements ColectivoInterface {
     }
 
     public function linea(){
-    	return $this->linea;
+        return $this->linea;
     }
 
     public function empresa(){
-    	return $this->empresa;
+        return $this->empresa;
     }
 
     public function numero(){
-    	return $this->numero;
+        return $this->numero;
     }
 
     public function pagarCon(TarjetaInterface $tarjeta, TiempoInterface $tiempo){
@@ -58,16 +58,14 @@ class Colectivo implements ColectivoInterface {
             $normaloplus="Normal";
             $pago="Abona 2 Viajes Plus";
             $mult=3;
-        }
-        else{
+        } else{
             if($tarjeta->obtenerPlus1() == FALSE ){
                 if ($tarjeta->obtenerSaldo() >= ($precio_efectivo+$tarjeta->obtenerMonto())){
                     $tarjeta->restarSaldo($precio_efectivo);
                     $normaloplus="Normal";
                     $pago="Abona 1 viaje plus";
                     $mult=2;
-                }
-                else{
+                } else{
                     if($tarjeta->obtenerPlus2() == FALSE){
                         return FALSE;
                     }
@@ -76,15 +74,13 @@ class Colectivo implements ColectivoInterface {
                 $pago="";
                 $mult=0;
                 }
-            }
-            else{
+            } else{
                 if($tarjeta->obtenerSaldo() >= $precio_efectivo){
                     $tarjeta->restarSaldo($precio_efectivo);
                     $normaloplus="Normal";
                     $pago="";
                     $mult=1;
-                }
-                else{
+                } else{
                     $tarjeta->CambiarPlus(1);
                     $normaloplus="Viaje Plus";
                     $pago="";
@@ -92,27 +88,27 @@ class Colectivo implements ColectivoInterface {
                 }
             }
         }
-        $boleto= new Boleto($precio_efectivo,$this,$tarjeta,$precio_efectivo*$mult,$normaloplus,$pago,$fecha_actual);
+        $boleto=new Boleto($precio_efectivo, $this, $tarjeta, $precio_efectivo*$mult, $normaloplus, $pago, $fecha_actual);
         $tarjeta->CambiarUltBol($boleto);
         return $boleto;
     }
 
-    public function esTrasbordo(TarjetaInterface $tarjeta, TiempoInterface $tiempo){
+    public function esTrasbordo(TarjetaInterface $tarjeta, TiempoInterface $tiempo) {
         
-        $bol =$tarjeta->ObtenerUltBol();
-        if($bol!=NULL){
-            $tiempoDesdeTransbordo = ($tiempo->tiempoactual)-($bol->obtenerFecha());
+        $bol=$tarjeta->ObtenerUltBol();
+        if ($bol!=NULL) {
+            $tiempoDesdeTransbordo=($tiempo->tiempoactual)-($bol->obtenerFecha());
         } else {
-            $tiempoDesdeTransbordo = 120;
+            $tiempoDesdeTransbordo=120;
         }
-        if(($tiempo->esDomingoFeriado()||$tiempo->esSabadoNoche())||$tiempo->esNoche()){
-            if($tiempoDesdeTransbordo<91&&$tarjeta->ultViajeTrasbordo==FALSE){
+        if (($tiempo->esDomingoFeriado()||$tiempo->esSabadoNoche())||$tiempo->esNoche()) {
+            if ($tiempoDesdeTransbordo<91&&$tarjeta->ultViajeTrasbordo==FALSE) {
                 $tarjeta->ultViajeTrasbordo=TRUE;
                 return (1/3);
             }
         }
-        if($tiempo->esSabadoDia()||$tiempo->esSemanaDia()){
-            if($tiempoDesdeTransbordo<61&&$tarjeta->ultViajeTrasbordo==FALSE){
+        if ($tiempo->esSabadoDia()||$tiempo->esSemanaDia()) {
+            if ($tiempoDesdeTransbordo<61&&$tarjeta->ultViajeTrasbordo==FALSE) {
                 $tarjeta->ultViajeTrasbordo=TRUE;
                 return (1/3);
             }
