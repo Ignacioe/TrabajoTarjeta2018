@@ -33,7 +33,7 @@ class Colectivo implements ColectivoInterface {
         $ultimo_boleto=$tarjeta->ObtenerUltBol();
         if($ultimo_boleto!=NULL){
             if ($tarjeta->obtenerTipo()=="Medio") {
-                $multiplicador=$this->pagarConMedio($tarjeta,$tiempo);
+                $multiplicador=$this->pagarConMedio($tarjeta,$tiempo,$ultimo_boleto);
                 
             }
             if ($tarjeta->obtenerTipo()=="Gratis") {
@@ -83,7 +83,7 @@ class Colectivo implements ColectivoInterface {
         return $boleto;
     }
 
-    public function pagarConMedio(TarjetaInterface $tarjeta, TiempoInterface $tiempo){
+    public function pagarConMedio(TarjetaInterface $tarjeta, TiempoInterface $tiempo,$ultimo_boleto){
         if ($ultimo_boleto!=NULL) {
             if ($fecha_actual-$ultimo_boleto->obtenerFecha()>4) {
                 return 0.5;
