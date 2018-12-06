@@ -8,11 +8,9 @@ class Franquicia extends Tarjeta {
     public function __construct() {
         $this->saldo = 0.0;
         $this->ID = rand();
-        $this->viajesPlus1 = TRUE;
-        $this->viajesPlus2 = TRUE;
-        $this->Ult_boleto = NULL;
+        $this->viajesPlus1 = true;
+        $this->viajesPlus2 = true;
+        $this->Ult_boleto = null;
         $this->tipo = "Gratis";
     }
 } 
-
-?>

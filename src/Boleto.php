@@ -6,7 +6,7 @@ class Boleto implements BoletoInterface {
 
     protected $valor;
     protected $fecha;
-    protected $tipoDeTarjeta;
+    protected $tipoTarjeta;
     protected $totalAbonado;
     protected $IDtarjeta;
     protected $lineaDeColectivo;
