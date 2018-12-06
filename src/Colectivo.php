@@ -39,7 +39,14 @@ class Colectivo implements ColectivoInterface {
             if ($tarjeta->obtenerTipo()=="Gratis") {
                 $multiplicador=$this->pagarConFranquiciaTotal($tarjeta,$tiempo);
             }
-        }   
+        } else {
+            if ($tarjeta->obtenerTipo()=="Medio") {
+                $multiplicador=0.5;
+            }
+            if ($tarjeta->obtenerTipo()=="Gratis") {
+                $multiplicador=0;
+            }
+        }
         $multiplicador*=$this->esTrasbordo($tarjeta, $tiempo);
         $precio_efectivo=$tarjeta->obtenerMonto()*$multiplicador;
         
@@ -49,14 +56,14 @@ class Colectivo implements ColectivoInterface {
             $pago="Abona 2 Viajes Plus";
             $mult=3;
         } else {
-            if ($tarjeta->obtenerPlus1()==FALSE) {
+            if ($tarjeta->obtenerPlus1()===FALSE) {
                 if ($tarjeta->obtenerSaldo()>=($precio_efectivo+$tarjeta->obtenerMonto())) {
                     $tarjeta->restarSaldo($precio_efectivo);
                     $normaloplus="Normal";
                     $pago="Abona 1 viaje plus";
                     $mult=2;
                 } else {
-                    if ($tarjeta->obtenerPlus2()==FALSE) {
+                    if ($tarjeta->obtenerPlus2()===FALSE) {
                         return FALSE;
                     }
                 $tarjeta->CambiarPlus(2); //Si no tengo credito y ya use el plus1, puedo usar el plus2
