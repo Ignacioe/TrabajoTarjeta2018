@@ -31,14 +31,15 @@ class Colectivo implements ColectivoInterface {
         $fecha_actual=$tiempo->tiempoactual;
         $multiplicador=1;
         $ultimo_boleto=$tarjeta->ObtenerUltBol();
-
-        if ($tarjeta->obtenerTipo()=="Medio") {
-            $multiplicador=$this->pagarConMedio($tarjeta,$tiempo);
-            
-        }
-        if ($tarjeta->obtenerTipo()=="Gratis") {
-            $multiplicador=$this->pagarConFranquiciaTotal;
-        }
+        if($ultimo_boleto!=NULL){
+            if ($tarjeta->obtenerTipo()=="Medio") {
+                $multiplicador=$this->pagarConMedio($tarjeta,$tiempo);
+                
+            }
+            if ($tarjeta->obtenerTipo()=="Gratis") {
+                $multiplicador=$this->pagarConFranquiciaTotal;
+            }
+        }   
         $multiplicador*=$this->esTrasbordo($tarjeta, $tiempo);
         $precio_efectivo=$tarjeta->obtenerMonto()*$multiplicador;
         
