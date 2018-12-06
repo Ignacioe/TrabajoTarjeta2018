@@ -33,8 +33,7 @@ class Colectivo implements ColectivoInterface {
         $ultimo_boleto = $tarjeta->ObtenerUltBol();
         if ($tarjeta->primerViaje == false) {
             if ($tarjeta->obtenerTipo() == "Medio") {
-                $multiplicador = $this->pagarConMedio($tarjeta, $tiempo, $ultimo_boleto, $fecha_actual);
-                
+                $multiplicador = $this->pagarConMedio($tarjeta, $tiempo, $ultimo_boleto, $fecha_actual); 
             }
             if ($tarjeta->obtenerTipo() == "Gratis") {
                 $multiplicador = $this->pagarConFranquiciaTotal($tarjeta, $tiempo);
