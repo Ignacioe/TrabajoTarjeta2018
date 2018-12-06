@@ -72,10 +72,10 @@ class Tarjeta implements TarjetaInterface {
     }
   
     public function CambiarPlus($op) {
-        if ($op==1) {
-            $this->viajesPlus1=FALSE;
+        if ($op == 1) {
+            $this->viajesPlus1 = FALSE;
         } else {
-            $this->viajesPlus2=FALSE;
+            $this->viajesPlus2 = FALSE;
         }
     }
 	
