@@ -123,7 +123,7 @@ class Colectivo implements ColectivoInterface {
         
         $bol=$tarjeta->ObtenerUltBol();
         if ($tarjeta->primerViaje===false) {
-            $tiempoDesdeTransbordo=($tiempo->tiempoactual)-($bol->fecha);
+            $tiempoDesdeTransbordo=($tiempo->tiempoactual)-($bol->obtenerFecha());
         } else {
             $tiempoDesdeTransbordo=120;
         }
