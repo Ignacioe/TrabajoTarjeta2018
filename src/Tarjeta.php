@@ -12,11 +12,13 @@ class Tarjeta implements TarjetaInterface {
     public $ultViajeTrasbordo;
 
     public function __construct() {
+        $colectivoficticio= new Colectivo("Ficticio","Ficticio",0);
+        $tarjetaficticia = new Tarjeta();
         $this->saldo = 0.0;
         $this->ID = rand();
         $this->viajesPlus1 = TRUE;
         $this->viajesPlus2 = TRUE;
-        $this->Ult_boleto = new Boleto(0,null,null,0,null,"",-100);
+        $this->Ult_boleto = new Boleto(0,$colectivoficticio,$tarjetaficticia,0,"Ficticio","",-100);
         $this->tipo = "Normal";
         $this->ultViajeTrasbordo = FALSE;
     }
