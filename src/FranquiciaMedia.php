@@ -11,5 +11,6 @@ class FranquiciaMedia extends Tarjeta {
         $this->viajesPlus2 = true;
         $this->Ult_boleto = true;
         $this->tipo = "Medio";
+        $this->primerViaje = true;
     }
 } 

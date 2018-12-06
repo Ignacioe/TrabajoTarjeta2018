@@ -12,5 +12,6 @@ class Franquicia extends Tarjeta {
         $this->viajesPlus2 = true;
         $this->Ult_boleto = null;
         $this->tipo = "Gratis";
+        $this->primerViaje = true;
     }
 } 
