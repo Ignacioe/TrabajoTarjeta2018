@@ -113,7 +113,7 @@ class Colectivo implements ColectivoInterface {
     }
 
     public function puedePagarDosPlus(TarjetaInterface $tarjeta, TiempoInterface $tiempo, $precio_efectivo) {
-        if ($tarjeta->obtenerPlus2() == false && $tarjeta->obtenerSaldo() >= $precio_efectivo+($tarjeta->obtenerMonto() * 2)) {
+        if ($tarjeta->obtenerPlus2() === false && $tarjeta->obtenerSaldo() >= $precio_efectivo+($tarjeta->obtenerMonto() * 2)) {
             return true;
         }
         return false;
@@ -143,4 +143,3 @@ class Colectivo implements ColectivoInterface {
         return 1;
     }
 }
-?>
