@@ -44,10 +44,10 @@ class ColectivoTest extends TestCase {
         $tarjetaNormal2 = new Tarjeta();
         $tarjetaNormal2->recargar(10);
         $colectivo->pagarCon($tarjetaNormal2, $tiempo);
-
+        $this->assertEquals($tarjetaNormal2->obtenerSaldo(), 10);
         $tarjetaNormal2->recargar(20);
         $colectivo->pagarCon($tarjetaNormal2, $tiempo);
-        $this->assertEquals($tarjetaNormal2->obtenerSaldo(), 0.4);
+        $this->assertEquals($tarjetaNormal2->obtenerSaldo(), 10);
     }
 
 }
