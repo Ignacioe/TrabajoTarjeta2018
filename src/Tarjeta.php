@@ -7,18 +7,18 @@ class Tarjeta implements TarjetaInterface {
     protected $viajesPlus1;
     protected $viajesPlus2;
     protected $monto = 15;
-    public $Ult_boleto=false;
+    public $Ult_boleto;
     protected $tipo;
-    public $ultViajeTrasbordo;
+    public $primerViaje;
 
     public function __construct() {
         $this->saldo = 0.0;
         $this->ID = rand();
-        $this->viajesPlus1 = TRUE;
-        $this->viajesPlus2 = TRUE;
+        $this->viajesPlus1 = true;
+        $this->viajesPlus2 = true;
         $this->Ult_boleto =false;
         $this->tipo = "Normal";
-        $this->ultViajeTrasbordo = FALSE;
+        $this->primerViaje = true;
     }
 
     public function recargar($monto) {

@@ -41,7 +41,6 @@ class TarjetaTest extends TestCase {
     public function testFranquiciaMedia(){
         $colectivo = new Colectivo("142 Rojo", "Semtur", 10);
         $tarjetaMedio = new FranquiciaMedia();
-        $tarjetaMedio2 = new FranquiciaMedia();
         $tiempo = new Tiempo();
        
         $tiempo->avanzar(1440);
