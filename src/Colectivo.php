@@ -57,15 +57,15 @@ class Colectivo implements ColectivoInterface {
             $pago = "Abona 2 Viajes Plus";
             $mult = 3;
         } else {
-            if ($tarjeta->obtenerPlus1() === FALSE) {
+            if ($tarjeta->obtenerPlus1() === false) {
                 if ($tarjeta->obtenerSaldo() >= ($precio_efectivo+$tarjeta->obtenerMonto())) {
                     $tarjeta->restarSaldo($precio_efectivo);
                     $normaloplus = "Normal";
                     $pago = "Abona 1 viaje plus";
                     $mult = 2;
                 } else {
-                    if ($tarjeta->obtenerPlus2() === FALSE) {
-                        return FALSE;
+                    if ($tarjeta->obtenerPlus2() === false) {
+                        return false;
                     }
                 $tarjeta->CambiarPlus(2); //Si no tengo credito y ya use el plus1, puedo usar el plus2
                 $normaloplus = "Viaje Plus";
@@ -113,10 +113,10 @@ class Colectivo implements ColectivoInterface {
     }
 
     public function puedePagarDosPlus(TarjetaInterface $tarjeta, TiempoInterface $tiempo, $precio_efectivo) {
-        if ($tarjeta->obtenerPlus2() == FALSE && $tarjeta->obtenerSaldo() >= $precio_efectivo+($tarjeta->obtenerMonto() * 2)) {
-            return TRUE;
+        if ($tarjeta->obtenerPlus2() == false && $tarjeta->obtenerSaldo() >= $precio_efectivo+($tarjeta->obtenerMonto() * 2)) {
+            return true;
         }
-        return FALSE;
+        return false;
     }
 
     public function esTrasbordo(TarjetaInterface $tarjeta, TiempoInterface $tiempo) {
@@ -128,18 +128,18 @@ class Colectivo implements ColectivoInterface {
             $tiempoDesdeTransbordo = 120;
         }
         if (($tiempo->esDomingoFeriado() || $tiempo->esSabadoNoche()) || $tiempo->esNoche()) {
-            if ($tiempoDesdeTransbordo < 91 && $tarjeta->ultViajeTrasbordo == FALSE) {
-                $tarjeta->ultViajeTrasbordo = TRUE;
+            if ($tiempoDesdeTransbordo < 91 && $tarjeta->ultViajeTrasbordo == false) {
+                $tarjeta->ultViajeTrasbordo = true;
                 return (1 / 3);
             }
         }
         if ($tiempo->esSabadoDia() || $tiempo->esSemanaDia()) {
-            if ($tiempoDesdeTransbordo < 61 && $tarjeta->ultViajeTrasbordo == FALSE) {
-                $tarjeta->ultViajeTrasbordo = TRUE;
+            if ($tiempoDesdeTransbordo < 61 && $tarjeta->ultViajeTrasbordo == false) {
+                $tarjeta->ultViajeTrasbordo = true;
                 return (1 / 3);
             }
         }
-        $tarjeta->ultViajeTrasbordo = FALSE;
+        $tarjeta->ultViajeTrasbordo = false;
         return 1;
     }
 }

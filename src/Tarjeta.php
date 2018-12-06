@@ -24,21 +24,21 @@ class Tarjeta implements TarjetaInterface {
     public function recargar($monto) {
         if ($monto == 10 || $monto == 20 || $monto == 30 || $monto == 50 || $monto == 100) {
             $this->saldo += $monto;
-            return TRUE;
+            return true;
         }
 
         if ($monto == 962.59) {
                 $this->saldo += $monto;
                 $this->saldo += 221.58;
-                return TRUE;
+                return true;
         }
 
         if ($monto == 510.15) {
                 $this->saldo += $monto;
                 $this->saldo += 81.93;
-                return TRUE;
+                return true;
         }
-        return FALSE;
+        return false;
     }
 
 
@@ -48,7 +48,7 @@ class Tarjeta implements TarjetaInterface {
 
     public function CambiarUltBol($boleto) {
         $this->Ult_boleto = $boleto;
-        return TRUE;
+        return true;
     }
 
     public function ObtenerUltBol() {
@@ -73,9 +73,9 @@ class Tarjeta implements TarjetaInterface {
   
     public function CambiarPlus($op) {
         if ($op == 1) {
-            $this->viajesPlus1 = FALSE;
+            $this->viajesPlus1 = false;
         } else {
-            $this->viajesPlus2 = FALSE;
+            $this->viajesPlus2 = false;
         }
     }
 	
@@ -85,14 +85,14 @@ class Tarjeta implements TarjetaInterface {
 
     public function restarSaldo($precio_efectivo) {
     
-            if ($this->viajesPlus2 === FALSE) { 						//Si viaje plus2 es false, tengo que pagar 2 plus y un boleto.
-            $this->viajesPlus1 = TRUE; //Cambio los plus a true
-            $this->viajesPlus2 = TRUE;
+            if ($this->viajesPlus2 === false) { 						//Si viaje plus2 es false, tengo que pagar 2 plus y un boleto.
+            $this->viajesPlus1 = true; //Cambio los plus a true
+            $this->viajesPlus2 = true;
                 $this->saldo -= ($this->obtenerMonto() * 2+$precio_efectivo); //le resto al saldo los 2 plus y el boleto
                 return;
             } else {
-            if ($this->viajesPlus1 === FALSE) {					//Si solo tengo que pagar 1 plus
-                    $this->viajesPlus1 = TRUE;
+            if ($this->viajesPlus1 === false) {					//Si solo tengo que pagar 1 plus
+                    $this->viajesPlus1 = true;
                     $this->saldo -= ($this->obtenerMonto()+$precio_efectivo); //Resto el plus y 1 boleto
                     return;
                 } else {
