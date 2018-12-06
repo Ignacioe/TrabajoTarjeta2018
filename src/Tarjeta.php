@@ -6,36 +6,36 @@ class Tarjeta implements TarjetaInterface {
     protected $ID;
     protected $viajesPlus1;
     protected $viajesPlus2;
-    protected $monto=15;
+    protected $monto = 15;
     public $Ult_boleto;
     protected $tipo;
     public $ultViajeTrasbordo;
 
     public function __construct() {
-        $this->saldo=0.0;
-        $this->ID=rand();
-        $this->viajesPlus1=TRUE;
-        $this->viajesPlus2=TRUE;
-        $this->Ult_boleto=NULL;
-        $this->tipo="Normal";
-        $this->ultViajeTrasbordo=FALSE;
+        $this->saldo = 0.0;
+        $this->ID = rand();
+        $this->viajesPlus1 = TRUE;
+        $this->viajesPlus2 = TRUE;
+        $this->Ult_boleto = NULL;
+        $this->tipo = "Normal";
+        $this->ultViajeTrasbordo = FALSE;
     }
 
     public function recargar($monto) {
-        if ($monto==10||$monto==20||$monto==30||$monto==50||$monto==100) {
-            $this->saldo+=$monto;
+        if ($monto == 10 || $monto == 20 || $monto == 30 || $monto == 50 || $monto == 100) {
+            $this->saldo += $monto;
             return TRUE;
         }
 
-        if ($monto==962.59) {
-                $this->saldo+=$monto;
-                $this->saldo+=221.58;
+        if ($monto == 962.59) {
+                $this->saldo += $monto;
+                $this->saldo += 221.58;
                 return TRUE;
         }
 
-        if ($monto==510.15) {
-                $this->saldo+=$monto;
-                $this->saldo+=81.93;
+        if ($monto == 510.15) {
+                $this->saldo += $monto;
+                $this->saldo += 81.93;
                 return TRUE;
         }
         return FALSE;
@@ -47,7 +47,7 @@ class Tarjeta implements TarjetaInterface {
     }
 
     public function CambiarUltBol($boleto) {
-        $this->Ult_boleto=$boleto;
+        $this->Ult_boleto = $boleto;
         return TRUE;
     }
 
@@ -74,8 +74,7 @@ class Tarjeta implements TarjetaInterface {
     public function CambiarPlus($op) {
         if ($op==1) {
             $this->viajesPlus1=FALSE;
-        }
-        else {
+        } else {
             $this->viajesPlus2=FALSE;
         }
     }
@@ -86,18 +85,18 @@ class Tarjeta implements TarjetaInterface {
 
     public function restarSaldo($precio_efectivo) {
     
-            if ($this->viajesPlus2==FALSE) { 						//Si viaje plus2 es false, tengo que pagar 2 plus y un boleto.
-            $this->viajesPlus1=TRUE; //Cambio los plus a true
-            $this->viajePlus2=TRUE;
-                $this->saldo-=($this->obtenerMonto()*2+$precio_efectivo); //le resto al saldo los 2 plus y el boleto
+            if ($this->viajesPlus2 == FALSE) { 						//Si viaje plus2 es false, tengo que pagar 2 plus y un boleto.
+            $this->viajesPlus1 = TRUE; //Cambio los plus a true
+            $this->viajePlus2 = TRUE;
+                $this->saldo -= ($this->obtenerMonto() * 2+$precio_efectivo); //le resto al saldo los 2 plus y el boleto
                 return;
             } else {
-            if ($this->viajesPlus1==FALSE) {					//Si solo tengo que pagar 1 plus
-                    $this->viajesPlus1=TRUE;
-                    $this->saldo-=($this->obtenerMonto()+$precio_efectivo); //Resto el plus y 1 boleto
+            if ($this->viajesPlus1 == FALSE) {					//Si solo tengo que pagar 1 plus
+                    $this->viajesPlus1 = TRUE;
+                    $this->saldo -= ($this->obtenerMonto()+$precio_efectivo); //Resto el plus y 1 boleto
                     return;
                 } else {
-                $this->saldo-=$precio_efectivo;	
+                $this->saldo -= $precio_efectivo;	
                 return;
             }
             }
