@@ -28,5 +28,10 @@ class TiempoTest extends TestCase {
         $this->assertEquals($tiempo->minutos,0);
         $this->assertEquals($tiempo->hora,0);
         $this->assertEquals($tiempo->dia,2);
+        $tiempo2= new Tiempo();
+        $tiempo2->avanzar(1440*366);
+        $this->assertEquals($tiempo->minutos,0);
+        $this->assertEquals($tiempo->hora,0);
+        $this->assertEquals($tiempo->dia,2);
     }
 }
