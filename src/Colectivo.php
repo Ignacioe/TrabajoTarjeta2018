@@ -31,7 +31,7 @@ class Colectivo implements ColectivoInterface {
         $fecha_actual=$tiempo->tiempoactual;
         $multiplicador=1;
         $ultimo_boleto=$tarjeta->ObtenerUltBol();
-        if($ultimo_boleto!=NULL){
+        if($ultimo_boleto!=false){
             if ($tarjeta->obtenerTipo()=="Medio") {
                 $multiplicador=$this->pagarConMedio($tarjeta,$tiempo,$ultimo_boleto,$fecha_actual);
                 
