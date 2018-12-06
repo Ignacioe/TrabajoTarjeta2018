@@ -43,11 +43,12 @@ interface ColectivoInterface {
      * @param TarjetaInterface $tarjeta
      * @param TiempoInterface $tiempo
      * @param $ultimo_boleto
+     * @param $fecha_actual
      * 
      * @return int
      *  El multiplicador, 0.5 si se paga medio boleto, 1 si se paga normal.
      */
-    public function pagarConMedio(TarjetaInterface $tarjeta, TiempoInterface $tiempo,$ultimo_boleto);
+    public function pagarConMedio(TarjetaInterface $tarjeta, TiempoInterface $tiempo,$ultimo_boleto,$fecha_actual);
 
     /**
      * Realiza los pasos extra que hay que hacer si se paga con una franquicia total.
