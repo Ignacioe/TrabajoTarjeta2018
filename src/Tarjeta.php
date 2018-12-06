@@ -10,6 +10,7 @@ class Tarjeta implements TarjetaInterface {
     public $Ult_boleto;
     protected $tipo;
     public $primerViaje;
+    protected $ultViajeTransbordo = FALSE;//indica si el ultimo viaje fue transbordo
 
     public function __construct() {
         $this->saldo = 0.0;
@@ -20,6 +21,11 @@ class Tarjeta implements TarjetaInterface {
         $this->tipo = "Normal";
         $this->primerViaje = true;
     }
+
+	public function UltimoTransbordo(){
+	
+		return $this->ultViajeTransbordo; //TRUE si el ultimo viaje fue transbordo, FALSE en caso contrario
+	}
 
     public function recargar($monto) {
         if ($monto == 10 || $monto == 20 || $monto == 30 || $monto == 50 || $monto == 100) {

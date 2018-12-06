@@ -31,7 +31,7 @@ class Colectivo implements ColectivoInterface {
         $fecha_actual = $tiempo->tiempoactual;
         $multiplicador = 1;
         $ultimo_boleto = $tarjeta->ObtenerUltBol();
-        if ($tarjeta->primerViaje == false) {
+        if ($tarjeta->primerViaje == false) {  
             if ($tarjeta->obtenerTipo() == "Medio") {
                 $multiplicador = $this->pagarConMedio($tarjeta, $tiempo, $ultimo_boleto, $fecha_actual); 
             }
@@ -47,7 +47,8 @@ class Colectivo implements ColectivoInterface {
                 $multiplicador = 0;
             }
         }
-        $multiplicador *= $this->esTrasbordo($tarjeta, $tiempo);
+	if($tarjeta->UltimoTransbordo()==FALSE)$multiplicador *= $this->esTrasbordo($tarjeta, $tiempo);
+        else $multiplicador = 1;
         $precio_efectivo = $tarjeta->obtenerMonto() * $multiplicador;
         
         if ($this->puedePagarDosPlus($tarjeta, $tiempo, $precio_efectivo)) {
@@ -125,6 +126,7 @@ class Colectivo implements ColectivoInterface {
             $tiempoDesdeTransbordo = ($tiempo->tiempoactual)-($bol->obtenerFecha());
         } else {
             $tiempoDesdeTransbordo = 120;
+
         }
         if (($tiempo->esDomingoFeriado() || $tiempo->esSabadoNoche()) || $tiempo->esNoche()) {
             if ($tiempoDesdeTransbordo < 91 && $tarjeta->ultViajeTrasbordo == false) {
