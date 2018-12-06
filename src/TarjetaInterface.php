@@ -68,7 +68,6 @@ interface TarjetaInterface {
     /**
      * Cambia el valor de TRUE a FALSE dependiendo de con cual viaje plus se esta pagando.
      * @param int $op
-
      * @return bool
      */
     public function CambiarPlus($op);
