@@ -22,6 +22,7 @@ class BoletoTest extends TestCase {
         $tarjetaJose = new Tarjeta();
         $boleto = new Boleto($valor,$colectivo, $tarjetaJose,NULL,NULL,NULL,0);
         $tiempo = new Tiempo();
+        $tiempo->avanzar(1440);
         $tarjetaJose->recargar(20);
         
         $boleto= $colectivo->pagarCon($tarjetaJose,$tiempo);
